@@ -5,7 +5,7 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  clientID: '{CLIENT_ID}',
-  domain: '{DOMAIN}',
-  callbackURL: 'http://localhost:3000/callback'
+  clientID: 'gI65yoSXBf1mj5wkAHjxnvBC54lHqc0B',
+  domain: 'gaduo.auth0.com',
+  callbackURL: 'http://localhost:4200/callback'
 };
