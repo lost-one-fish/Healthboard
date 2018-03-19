@@ -12,7 +12,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid'
+    scope: 'openid profile'
   });
 
   constructor(public router: Router) {}
