@@ -13,6 +13,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     CallbackComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
