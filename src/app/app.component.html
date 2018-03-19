@@ -1,20 +1,17 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<mat-sidenav-container class="container">
-  <mat-sidenav mode="side" opened >
-    <mat-nav-list role="list">
-      <mat-list-item role="listitem">Item 001</mat-list-item>
-      <mat-list-item role="listitem">Item 002</mat-list-item>
-      <mat-list-item role="listitem">Item 003</mat-list-item>
-      <mat-list-item role="listitem">Item 004</mat-list-item>
-      <mat-list-item role="listitem">Item 005</mat-list-item>
-      <mat-list-item role="listitem">Item 006</mat-list-item>
-      <mat-list-item role="listitem">Item 007</mat-list-item>
-      <mat-list-item role="listitem">Item 008</mat-list-item>
-      <mat-list-item role="listitem">Item 009</mat-list-item>
-      <mat-list-item role="listitem">Item 010</mat-list-item>
-      <mat-list-item role="listitem">Item 011</mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content ></mat-sidenav-content>
+<button
+  class="btn btn-primary btn-margin"
+  *ngIf="!auth.isAuthenticated()"
+  (click)="auth.login()">
+  Log In
+</button>
+
+<button
+  class="btn btn-primary btn-margin"
+  *ngIf="auth.isAuthenticated()"
+  (click)="auth.logout()">
+  Log Out
+</button>
+
+<main class="container">
   <router-outlet></router-outlet>
-</mat-sidenav-container>
+</main>
