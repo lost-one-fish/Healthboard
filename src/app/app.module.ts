@@ -6,11 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatSidenavModule } from '@angular/material';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthService } from './auth/auth.service';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallbackComponent,
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +25,7 @@ import { MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatSi
     AppRoutingModule,
     MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
