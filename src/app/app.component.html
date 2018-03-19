@@ -1,16 +1,23 @@
-<button
-  class="btn btn-primary btn-margin"
-  *ngIf="!auth.isAuthenticated()"
-  (click)="auth.login()">
-  Log In
-</button>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Health Board</span>
+    <span class="spacer"></span>
 
-<button
-  class="btn btn-primary btn-margin"
-  *ngIf="auth.isAuthenticated()"
-  (click)="auth.logout()">
-  Log Out
-</button>
+    <button
+      mat-button
+      *ngIf="!auth.isAuthenticated()"
+      (click)="auth.login()">
+      Log In
+    </button>
+
+    <button
+      mat-button
+      *ngIf="auth.isAuthenticated()"
+      (click)="auth.logout()">
+      Log Out
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <main class="container">
   <router-outlet></router-outlet>
