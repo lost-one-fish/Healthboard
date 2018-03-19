@@ -9,12 +9,14 @@ import { MatButtonModule, MatCheckboxModule, MatListModule, MatSidenavModule } f
 import { CallbackComponent } from './callback/callback.component';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CallbackComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
