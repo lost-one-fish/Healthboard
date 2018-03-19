@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatListModule, MatSidenavModule } from '@angular/material';
 import { CallbackComponent } from './callback/callback.component';
+import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -21,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
