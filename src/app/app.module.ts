@@ -6,7 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatGridListModule, MatIconModule, MatListModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule,
+  MatPaginatorModule, MatSidenavModule,
+  MatSortModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import { CallbackComponent } from './callback/callback.component';
@@ -28,7 +30,8 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule
+    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule,
+    MatSortModule, MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
