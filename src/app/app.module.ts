@@ -5,11 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatListModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatIconModule, MatListModule, MatSidenavModule } from '@angular/material';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule
+    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
