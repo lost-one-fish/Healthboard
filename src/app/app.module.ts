@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCheckboxModule, MatGridListModule, MatIconModule, MatListModule, MatSidenavModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatGridListModule, MatIconModule, MatListModule, MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import { CallbackComponent } from './callback/callback.component';
@@ -26,7 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule
+    MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
