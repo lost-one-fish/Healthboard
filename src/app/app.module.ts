@@ -16,6 +16,8 @@ import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PatientsService } from './fhir/patients.service';
 
 
 @NgModule({
@@ -30,10 +32,11 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule,
     MatSortModule, MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, PatientsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
