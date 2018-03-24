@@ -19,6 +19,7 @@ import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientsService } from './fhir/patients.service';
 import { DeviceComponent } from './device/device.component';
+import {DevicesService} from './fhir/devices.service';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { DeviceComponent } from './device/device.component';
     MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule,
     MatSortModule, MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule
   ],
-  providers: [AuthService, PatientsService],
+  providers: [AuthService, PatientsService, DevicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
