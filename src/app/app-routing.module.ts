@@ -4,11 +4,13 @@ import { CallbackComponent } from './callback/callback.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
+import { DeviceComponent } from './device/device.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'user', component: UserComponent },
+  { path: 'device', component: DeviceComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '' }
 ];

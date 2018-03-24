@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PatientsService } from './fhir/patients.service';
+import { DeviceComponent } from './device/device.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PatientsService } from './fhir/patients.service';
     CallbackComponent,
     HomeComponent,
     ProfileComponent,
-    UserComponent
+    UserComponent,
+    DeviceComponent
   ],
   imports: [
     BrowserModule,
