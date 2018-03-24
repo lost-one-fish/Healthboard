@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule,
-  MatPaginatorModule, MatSidenavModule,
+  MatPaginatorModule, MatProgressSpinnerModule, MatSidenavModule,
   MatSortModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -34,7 +34,7 @@ import { PatientsService } from './fhir/patients.service';
     AppRoutingModule,
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatSidenavModule, MatListModule, MatIconModule, MatToolbarModule, MatGridListModule, MatCardModule,
-    MatSortModule, MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule
+    MatSortModule, MatPaginatorModule, MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule
   ],
   providers: [AuthService, PatientsService],
   bootstrap: [AppComponent]
