@@ -1,17 +1,29 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
 import { PatientsService } from '../fhir/patients.service';
-import { BundleEntry } from '../fhir/fhir.model';
+import {merge} from 'rxjs/observable/merge';
+import {of as observableOf} from 'rxjs/observable/of';
+import {catchError} from 'rxjs/operators/catchError';
+import {map} from 'rxjs/operators/map';
+import {startWith} from 'rxjs/operators/startWith';
+import {switchMap} from 'rxjs/operators/switchMap';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements AfterViewInit {
+export class UserComponent implements OnInit {
 
   displayedColumns = ['id', 'name', 'birthDate', 'gender'];
-  dataSource: MatTableDataSource<BundleEntry>;
+  dataSource = new MatTableDataSource();
+
+  // MatPaginator Inputs
+  length = 0;
+  pageSize = 10;
+
+  isLoadingResults = true;
+  isRateLimitReached = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -19,17 +31,33 @@ export class UserComponent implements AfterViewInit {
   constructor(public patientService: PatientsService) {
   }
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  ngAfterViewInit() {
-    this.patientService.findAll(3000, 10).subscribe(bundles => {
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(bundles[0].entry);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+  ngOnInit(): void {
+    this.patientService.count().subscribe( value => {
+      this.length = value;
     });
+
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.patientService.findAll(this.paginator.pageIndex, this.pageSize);
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+
+          return data[0];
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(bundles => this.dataSource.data = bundles.entry);
   }
 
   applyFilter(filterValue: string) {
