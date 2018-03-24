@@ -1,3 +1,52 @@
-<p>
-  device works!
-</p>
+<br/>
+<br/>
+<br/>
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      // TODO Error Message
+    </div>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort >
+
+    <!-- udi.name Column -->
+    <ng-container matColumnDef="udi.name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> UDI Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.resource && row.resource.udi && row.resource.udi.name">
+          {{row.resource.udi.name}}
+        </div>
+        <div *ngIf="!row.resource || !row.resource.udi || !row.resource.udi.name">
+          -
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Manufacturer Column -->
+    <ng-container matColumnDef="manufacturer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Manufacturer </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.resource.manufacturer}} </mat-cell>
+    </ng-container>
+
+    <!-- Model Column -->
+    <ng-container matColumnDef="model">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.resource.model}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="length" [pageSize]="pageSize">
+  </mat-paginator>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
