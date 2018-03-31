@@ -1,0 +1,59 @@
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      // TODO Error Message
+    </div>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort >
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.resource.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.resource && row.resource.name && row.resource.name[0].family">
+          {{row.resource.name[0].family}}
+        </div>
+        <div *ngIf="!row.resource || !row.resource.name || !row.resource.name[0].family">
+          -
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Birthday Column -->
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> BirthDate </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.resource.birthDate}} </mat-cell>
+    </ng-container>
+
+    <!-- Gender Column -->
+    <ng-container matColumnDef="gender">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.resource.gender}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="length" [pageSize]="pageSize">
+  </mat-paginator>
+</div>
+
+<br/>
+<br/>
+<br/>
