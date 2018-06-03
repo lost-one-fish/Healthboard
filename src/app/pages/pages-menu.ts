@@ -19,15 +19,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: '系統設定',
     icon: 'fa fa fa-wrench',
-    link: '/pages/ui-features',
+    link: '/pages/system-settings',
     children: [
       {
-        icon: 'fa fa fa-user',
+        icon: 'fa fa-user',
         title: '帳號管理',
+        link: '/pages/system-settings/manage-user',
       },
       {
-        icon: 'fa fa fa-key',
+        icon: 'fa fa-key',
         title: '密碼變更',
+        link: '/pages/system-settings/change-password',
+      },
+      {
+        icon: 'fa fa-sitemap',
+        title: '單位管理',
+        link: '/pages/system-settings/manage-organization',
       },
     ],
   },
