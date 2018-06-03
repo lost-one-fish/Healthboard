@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SystemSettingsRoutingModule } from './system-settings-routing.module';
+import { ManageUserComponent } from './manage-user/manage-user.component';
 import { SystemSettingsComponent } from './system-settings.component';
 import { ThemeModule } from '../../@theme/theme.module';
 
 const components = [
+  ManageUserComponent,
   SystemSettingsComponent,
 ];
 @NgModule({
