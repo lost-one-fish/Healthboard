@@ -1,4 +1,4 @@
 export class Configuration {
-  static fhirServer = 'https://hapi.healthboard.tw/baseDstu3';
+  static fhirServer = 'https://sandbox.pickonefish.org/baseDstu3';
   static uploadFileServer = 'https://upload.healthboard.tw/';
 }

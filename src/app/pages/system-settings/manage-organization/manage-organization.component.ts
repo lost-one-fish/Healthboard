@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SmartTableService } from "../../../@core/data/smart-table.service";
-import { LocalDataSource } from "ng2-smart-table";
+import { OrganizationsService } from '../../../shared/services/fhir/organizations.service';
 
 @Component({
   selector: 'ngx-manage-organization',
@@ -9,51 +8,99 @@ import { LocalDataSource } from "ng2-smart-table";
 })
 export class ManageOrganizationComponent implements OnInit {
 
-  settings = {
-    actions: {
-      columnTitle: '',
-      add: false
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: '編號',
-        type: 'number',
-        width: '45%',
-        filter: false
-      },
-      name: {
-        title: '名稱',
-        type: 'string',
-        width: '45%',
-        filter: false
-      },
-    },
+  private dataSet: Object = {};
+  private sort = {
+    sorts: [], column: {}, prevValue: '', newValue: '',
   };
 
-  source: LocalDataSource = new LocalDataSource();
+  rows = [];
+  count = 0;
+  limit = 10;
+  offset = 0;
+  loading = false;
+  keyword = '';
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private organizationsService: OrganizationsService) {
   }
 
   ngOnInit() {
+    this.fetchList(0);
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+  private fetchList(page: number) {
+    this.offset = page;
+    this.loading = true;
+    try {
+      if (!this.dataSet[page]) {
+        if (this.keyword && !this.sort.sorts[0]) {
+          this.organizationsService.findByName(this.keyword, page, this.limit).subscribe(
+            bundles => this.storageData(bundles[0], page),
+            err => {
+              console.error(err);
+              this.loading = false;
+            });
+        } else if (this.sort.sorts[0]) {
+          this.organizationsService.sort(this.sort.sorts[0].prop, this.sort.sorts[0].dir, page, this.limit).subscribe(
+            bundles => {
+              this.storageData(bundles[0], page);
+            },
+            err => {
+              console.error(err);
+              this.loading = false;
+            }
+          );
+        } else {
+          this.organizationsService.findAll(page, this.limit).subscribe(
+            bundles => {
+              this.storageData(bundles[0], page);
+            },
+            err => {
+              console.error(err);
+              this.loading = false;
+            });
+        }
+      } else {
+        this.restoreData(page);
+        this.loading = false;
+      }
+    } catch (e) {
+      console.error(e);
     }
+  }
+
+  private storageData(bundle, page) {
+    if (bundle.total > 0) {
+      this.count = bundle.total;
+    }
+    try {
+      this.dataSet[page] = bundle.entry;
+
+      this.restoreData(page);
+    } catch (e) {
+      console.error(e);
+    }
+    this.loading = false;
+  }
+
+  private restoreData(page) {
+    this.rows = [];
+    try {
+      if (this.dataSet[page]) {
+        this.rows = this.dataSet[page];
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  onSort(event) {
+    this.sort = event;
+
+    this.dataSet = [];
+    this.fetchList(0);
+  }
+
+  onPage(page) {
+    this.fetchList(page.offset);
   }
 }

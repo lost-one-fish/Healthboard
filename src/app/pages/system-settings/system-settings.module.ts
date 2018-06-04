@@ -7,7 +7,7 @@ import { SystemSettingsComponent } from './system-settings.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ManageOrganizationComponent } from './manage-organization/manage-organization.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 const components = [
   ManageUserComponent,
@@ -20,7 +20,7 @@ const components = [
     CommonModule,
     ThemeModule,
     SystemSettingsRoutingModule,
-    Ng2SmartTableModule,
+    NgxDatatableModule,
   ],
   declarations: [
     ...components,
