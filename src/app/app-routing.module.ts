@@ -6,10 +6,14 @@ import { NgxRegisterComponent } from './@theme/components/auth/register/register
 import { NgxLogoutComponent } from './@theme/components/auth/logout/logout.component';
 import { NgxRequestPasswordComponent } from './@theme/components/auth/request-password/request-password.component';
 import { NgxResetPasswordComponent } from './@theme/components/auth/reset-password/reset-password.component';
+import { AuthGuard } from './shared/services/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule' },
   {
+    path: 'pages',
+    canActivate: [AuthGuard],
+    loadChildren: 'app/pages/pages.module#PagesModule'
+  }, {
     path: 'auth',
     component: NgxAuthComponent,
     children: [
