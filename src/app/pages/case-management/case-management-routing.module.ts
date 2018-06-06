@@ -10,6 +10,9 @@ const routes: Routes = [{
   children: [{
     path: 'cases',
     component: CasesComponent,
+  }, {
+    path: 'new-case',
+    component: NewCaseComponent,
   }],
 }];
 
