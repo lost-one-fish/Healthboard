@@ -55,7 +55,7 @@
       <ngx-datatable-column name="" [width]="37" >
         <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
           <div *ngIf="selectedRow != null && row['resource']['id'] == selectedRow['resource']['id']">
-            Hello
+            <mat-icon class="text-center">location_on</mat-icon>
           </div>
         </ng-template>
       </ngx-datatable-column>

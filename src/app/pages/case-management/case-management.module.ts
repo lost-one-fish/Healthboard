@@ -8,6 +8,7 @@ import { CasesComponent } from './cases/cases.component';
 import { NewCaseComponent } from './new-case/new-case.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PatientService } from '../../shared/services/fhir/patient.service';
+import { MatIconModule } from '@angular/material';
 
 const components = [
   CasesComponent,
@@ -19,6 +20,7 @@ const components = [
     CommonModule,
     ThemeModule,
     CaseManagementRoutingModule,
+    MatIconModule,
     NgxDatatableModule,
   ],
   declarations: [
