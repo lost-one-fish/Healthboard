@@ -14,7 +14,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: '個案管理',
     icon: 'fa fa fa-bar-chart',
-    link: '/pages/ui-features',
+    children: [
+      {
+        icon: 'fa fa-user',
+        title: '個案資料',
+        link: '/pages/case-management/cases',
+      },
+    ],
   },
   {
     title: '系統設定',
