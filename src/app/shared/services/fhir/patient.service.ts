@@ -5,7 +5,7 @@ import { Patient } from './fhir.model';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class PatientsService extends GenericFhirService<Patient> {
+export class PatientService extends GenericFhirService<Patient> {
 
   constructor(http: HttpClient) {
     super('Patient', http);
