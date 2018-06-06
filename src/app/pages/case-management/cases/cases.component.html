@@ -52,6 +52,18 @@
           </span>
         </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column name="申請結果" [width]="50" >
+        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
+          <!-- // TODO: 需搭配 Encounter https://www.hl7.org/fhir/encounter.html -->
+          -
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="接案日期" [width]="50" >
+        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
+          <!-- // TODO: 需搭配 Encounter https://www.hl7.org/fhir/encounter.html -->
+          -
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="" [width]="37" >
         <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
           <div *ngIf="selectedRow != null && row['resource']['id'] == selectedRow['resource']['id']">
