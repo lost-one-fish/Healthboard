@@ -4,7 +4,7 @@ import { PatientService } from '../../../shared/services/fhir/patient.service';
 @Component({
   selector: 'ngx-cases',
   templateUrl: './cases.component.html',
-  styleUrls: ['./cases.component.scss'],
+  styleUrls: ['./cases.component.css'],
 })
 export class CasesComponent implements OnInit {
 
@@ -13,6 +13,13 @@ export class CasesComponent implements OnInit {
     sorts: [], column: {}, prevValue: '', newValue: '',
   };
 
+  localizationMessage = {
+    emptyMessage: '未找到任何資料！',
+    totalMessage: '筆記錄',
+    selectedMessage: '已選擇',
+  };
+
+  selectedRow;
   rows = [];
   count = 0;
   limit = 10;
@@ -98,4 +105,11 @@ export class CasesComponent implements OnInit {
   onPage(page) {
     this.fetchList(page.offset);
   }
+
+  onActivate(event): void {
+    if (event.type === 'click') {
+      this.selectedRow = event.row;
+    }
+  }
+
 }

@@ -6,7 +6,7 @@
   <nb-card-body>
 
     <ngx-datatable
-      class="bootstrap fullscreen"
+      class="bootstrap"
       [columnMode]="'force'"
       [rows]="rows"
 
@@ -21,9 +21,11 @@
       [externalSorting]="true"
 
       [loadingIndicator]="loading"
+      [messages]="localizationMessage"
 
       (sort)="onSort($event)"
       (page)="onPage($event)"
+      (activate)="onActivate($event)"
     >
       <ngx-datatable-column name="#" [width]="15" [sortable]="false">
         <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
@@ -40,7 +42,7 @@
           </div>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="個案姓名">
+      <ngx-datatable-column name="個案姓名" prop="name" >
         <ng-template let-row="row" ngx-datatable-cell-template>
           <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['family']">
             {{row['resource']['name'][0]['family'][0]}}
@@ -48,6 +50,13 @@
           <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['given']">
             {{row['resource']['name'][0]['given'][0]}}
           </span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="" [width]="37" >
+        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
+          <div *ngIf="selectedRow != null && row['resource']['id'] == selectedRow['resource']['id']">
+            Hello
+          </div>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
