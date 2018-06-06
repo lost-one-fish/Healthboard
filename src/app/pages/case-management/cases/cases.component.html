@@ -1,3 +1,55 @@
-<p>
-  個案資料
-</p>
+<nb-card>
+  <nb-card-header>
+    個案資料
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <ngx-datatable
+      class="bootstrap fullscreen"
+      [columnMode]="'force'"
+      [rows]="rows"
+
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="40"
+
+      [count]="count"
+      [limit]="limit"
+      [offset]="offset"
+      [externalPaging]="true"
+      [externalSorting]="true"
+
+      [loadingIndicator]="loading"
+
+      (sort)="onSort($event)"
+      (page)="onPage($event)"
+    >
+      <ngx-datatable-column name="#" [width]="15" [sortable]="false">
+        <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          <strong>{{(rowIndex + 1) + (offset*limit)}}</strong>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="身分證字號" prop="_id" [width]="50">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div *ngIf="row.resource && row.resource.id">
+            {{row.resource.id}}
+          </div>
+          <div *ngIf="!row.resource || !row.resource.id">
+            -
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="個案姓名">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['family']">
+            {{row['resource']['name'][0]['family'][0]}}
+          </span>
+          <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['given']">
+            {{row['resource']['name'][0]['given'][0]}}
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </nb-card-body>
+</nb-card>

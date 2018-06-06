@@ -6,6 +6,8 @@ import { CaseManagementComponent } from './case-management.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { CasesComponent } from './cases/cases.component';
 import { NewCaseComponent } from './new-case/new-case.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PatientService } from '../../shared/services/fhir/patient.service';
 
 const components = [
   CasesComponent,
@@ -17,9 +19,13 @@ const components = [
     CommonModule,
     ThemeModule,
     CaseManagementRoutingModule,
+    NgxDatatableModule,
   ],
   declarations: [
     ...components,
+  ],
+  providers: [
+    PatientService,
   ],
 })
 export class CaseManagementModule { }
