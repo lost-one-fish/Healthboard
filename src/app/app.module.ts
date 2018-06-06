@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './shared/services/auth-guard.service';
+import { NB_AUTH_TOKEN_CLASS, NbAuthJWTToken } from '@nebular/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { AuthGuard } from './shared/services/auth-guard.service';
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
     AuthGuard,
+    { provide: NB_AUTH_TOKEN_CLASS, useValue: NbAuthJWTToken },
   ],
 })
 export class AppModule {
