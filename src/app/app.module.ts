@@ -16,7 +16,6 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './@core/utils/auth-guard.service';
 import { TokenInterceptor } from './@core/utils/token.interceptor';
-import { ReactiveFormsModule } from '@angular/forms';
 import * as Raven from 'raven-js';
 import { environment } from '../environments/environment';
 import { SmartContext } from './@core/service/smart-context';
@@ -29,7 +28,10 @@ if (environment.production) {
 
 export class RavenErrorHandler implements ErrorHandler {
   handleError(err: any): void {
-    Raven.captureException(err);
+    if (environment.production) {
+      Raven.captureException(err);
+    }
+    console.error(err);
   }
 }
 
@@ -40,7 +42,6 @@ export class RavenErrorHandler implements ErrorHandler {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule,
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
