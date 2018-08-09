@@ -4,6 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { Router } from '@angular/router';
+import { SmartContext } from '../../../@core/service/smart-context';
 
 @Component({
   selector: 'ngx-header',
@@ -19,13 +20,14 @@ export class HeaderComponent implements OnInit {
 
   isAuthenticated: boolean;
 
-  userMenu = [{ title: '個人資訊', link: '/pages/user/profile' }, { title: '登出', link: '/auth/logout' }];
+  userMenu = [{title: '個人資訊', link: '/pages/user/profile'}, {title: '登出', link: '/auth/logout'}];
 
   constructor(private sidebarService: NbSidebarService,
-    private menuService: NbMenuService,
-    private authService: NbAuthService,
-    private router: Router,
-    private analyticsService: AnalyticsService) {
+              private menuService: NbMenuService,
+              private authService: NbAuthService,
+              private router: Router,
+              private analyticsService: AnalyticsService,
+              private smartContext: SmartContext) {
   }
 
   ngOnInit() {
@@ -33,12 +35,12 @@ export class HeaderComponent implements OnInit {
       this.isAuthenticated = auth;
     });
     this.authService.onTokenChange()
-      .subscribe((token: NbAuthJWTToken) => {
-        if (token.isValid()) {
-          // here we receive a payload from the token and assigne it to our `user` variable
-          this.user = token.getPayload();
-        }
-      });
+    .subscribe((token: NbAuthJWTToken) => {
+      if (token.isValid()) {
+        // here we receive a payload from the token and assigne it to our `user` variable
+        this.user = token.getPayload();
+      }
+    });
   }
 
   toggleSidebar(): boolean {
@@ -56,5 +58,9 @@ export class HeaderComponent implements OnInit {
 
   redirectLogin() {
     this.router.navigate(['auth/login']);
+  }
+
+  update(url) {
+    this.smartContext.baseUrl = url;
   }
 }

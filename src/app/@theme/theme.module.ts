@@ -44,6 +44,7 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { SmartContext } from '../@core/service/smart-context';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
