@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,24 +17,26 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out', link: '/auth/logout' }];
+  isAuthenticated: boolean;
+
+  userMenu = [{ title: '個人資訊', link: '/pages/user/profile' }, { title: '登出', link: '/auth/logout' }];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private userService: UserService,
-              private authService: NbAuthService,
-              private router: Router,
-              private analyticsService: AnalyticsService) {
+    private menuService: NbMenuService,
+    private authService: NbAuthService,
+    private router: Router,
+    private analyticsService: AnalyticsService) {
   }
 
   ngOnInit() {
+    this.authService.isAuthenticated().subscribe(auth => {
+      this.isAuthenticated = auth;
+    });
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
         if (token.isValid()) {
           // here we receive a payload from the token and assigne it to our `user` variable
           this.user = token.getPayload();
-        } else {
-          this.router.navigate(['auth/login']);
         }
       });
   }
@@ -51,5 +52,9 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  redirectLogin() {
+    this.router.navigate(['auth/login']);
   }
 }

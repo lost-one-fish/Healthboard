@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationsService } from '../../../shared/services/fhir/organizations.service';
+import { OrganizationRestService } from '../../../@core/service/organization-rest.service';
 
 @Component({
   selector: 'ngx-manage-organization',
   templateUrl: './manage-organization.component.html',
-  styleUrls: ['./manage-organization.component.scss']
+  styleUrls: ['./manage-organization.component.scss'],
 })
 export class ManageOrganizationComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class ManageOrganizationComponent implements OnInit {
   loading = false;
   keyword = '';
 
-  constructor(private organizationsService: OrganizationsService) {
+  constructor(private organizationRestService: OrganizationRestService) {
   }
 
   ngOnInit() {
@@ -33,24 +33,15 @@ export class ManageOrganizationComponent implements OnInit {
     try {
       if (!this.dataSet[page]) {
         if (this.keyword && !this.sort.sorts[0]) {
-          this.organizationsService.findByName(this.keyword, page, this.limit).subscribe(
+          this.organizationRestService.fetchAll('Organization').subscribe(
             bundles => this.storageData(bundles[0], page),
             err => {
               console.error(err);
               this.loading = false;
             });
         } else if (this.sort.sorts[0]) {
-          this.organizationsService.sort(this.sort.sorts[0].prop, this.sort.sorts[0].dir, page, this.limit).subscribe(
-            bundles => {
-              this.storageData(bundles[0], page);
-            },
-            err => {
-              console.error(err);
-              this.loading = false;
-            }
-          );
         } else {
-          this.organizationsService.findAll(page, this.limit).subscribe(
+          this.organizationRestService.fetchAll('Organization').subscribe(
             bundles => {
               this.storageData(bundles[0], page);
             },

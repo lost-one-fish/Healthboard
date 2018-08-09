@@ -14,6 +14,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: '個案管理',
     icon: 'fa fa fa-bar-chart',
+    data: {
+      permission: 'view',
+      resource: 'case-management',
+    },
     children: [
       {
         icon: 'fa fa-user',
@@ -31,6 +35,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: '系統設定',
     icon: 'fa fa fa-wrench',
     link: '/pages/system-settings',
+    data: {
+      permission: 'view',
+      resource: 'system-settings',
+    },
     children: [
       {
         icon: 'fa fa-user',

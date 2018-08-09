@@ -5,6 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
   NbActionsModule,
+  NbAlertModule,
+  NbBadgeModule,
+  NbProgressBarModule,
   NbCardModule,
   NbLayoutModule,
   NbMenuModule,
@@ -26,8 +29,10 @@ import {
   HeaderComponent,
   SearchInputComponent,
   ThemeSettingsComponent,
+  SwitcherComponent,
+  LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
-  TinyMCEComponent,
+  ThemeSwitcherListComponent,
 } from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
@@ -37,18 +42,15 @@ import {
   TwoColumnsLayoutComponent,
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
-import { NgxAuthBlockComponent } from './components/auth/auth-block/auth-block.component';
-import { NgxLoginComponent } from './components/auth/login/login.component';
-import { NgxRegisterComponent } from './components/auth/register/register.component';
-import { NgxRequestPasswordComponent } from './components/auth/request-password/request-password.component';
-import { NgxResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { NgxLogoutComponent } from './components/auth/logout/logout.component';
-import { NgxAuthComponent } from './components/auth/auth.component';
-import { RouterModule } from '@angular/router';
+import { COSMIC_THEME } from './styles/theme.cosmic';
+import { CORPORATE_THEME } from './styles/theme.corporate';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
+  NbBadgeModule,
+  NbAlertModule,
+  NbProgressBarModule,
   NbCardModule,
   NbLayoutModule,
   NbTabsetModule,
@@ -62,28 +64,26 @@ const NB_MODULES = [
   NbPopoverModule,
   NbContextMenuModule,
   NgbModule,
-  RouterModule,
   NbSecurityModule, // *nbIsGranted directive
 ];
 
 const COMPONENTS = [
+  SwitcherComponent,
+  LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
+  ThemeSwitcherListComponent,
   HeaderComponent,
   FooterComponent,
   SearchInputComponent,
   ThemeSettingsComponent,
-  TinyMCEComponent,
   OneColumnLayoutComponent,
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  NgxAuthComponent,
-  NgxAuthBlockComponent,
-  NgxLoginComponent,
-  NgxRegisterComponent,
-  NgxRequestPasswordComponent,
-  NgxResetPasswordComponent,
-  NgxLogoutComponent,
+];
+
+const ENTRY_COMPONENTS = [
+  ThemeSwitcherListComponent,
 ];
 
 const PIPES = [
@@ -98,7 +98,7 @@ const NB_THEME_PROVIDERS = [
     {
       name: 'default',
     },
-    [ DEFAULT_THEME ],
+    [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME ],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
@@ -108,6 +108,7 @@ const NB_THEME_PROVIDERS = [
   imports: [...BASE_MODULES, ...NB_MODULES],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
   declarations: [...COMPONENTS, ...PIPES],
+  entryComponents: [...ENTRY_COMPONENTS],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

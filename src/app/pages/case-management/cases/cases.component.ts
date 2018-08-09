@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../../shared/services/fhir/patient.service';
+import { PatientRestService } from '../../../@core/service/patient-rest.service';
 
 @Component({
   selector: 'ngx-cases',
@@ -27,7 +27,7 @@ export class CasesComponent implements OnInit {
   loading = false;
   keyword = '';
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientRestService) {
   }
 
   ngOnInit() {
@@ -42,17 +42,8 @@ export class CasesComponent implements OnInit {
         if (this.keyword && !this.sort.sorts[0]) {
           // TODO
         } else if (this.sort.sorts[0]) {
-          this.patientService.sort(this.sort.sorts[0].prop, this.sort.sorts[0].dir, page, this.limit).subscribe(
-            bundles => {
-              this.storageData(bundles[0], page);
-            },
-            err => {
-              console.error(err);
-              this.loading = false;
-            },
-          );
         } else {
-          this.patientService.findAll(page, this.limit).subscribe(
+          this.patientService.fetchAll('Patient').subscribe(
             bundles => {
               this.storageData(bundles[0], page);
             },

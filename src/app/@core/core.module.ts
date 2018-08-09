@@ -1,113 +1,124 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbEmailPassAuthProvider } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
-import { of as observableOf } from 'rxjs/observable/of';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
-import { Configuration } from '../app-config';
+import { environment } from '../../environments/environment';
+import { RoleProvider } from './utils/role.provider';
 
-const socialLinks = [
-];
-
-const NB_CORE_PROVIDERS = [
+export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
   ...NbAuthModule.forRoot({
-    providers: {
-      email: {
-        service: NbEmailPassAuthProvider,
-        config: {
-          delay: 3000,
-          baseEndpoint: Configuration.authServer,
-          login: {
-            alwaysFail: false,
-            rememberMe: true,
-            'endpoint': '/api/auth/token',
-            method: 'post',
-            redirect: {
-              success: '/',
-              failure: null,
-            },
-            defaultErrors: ['Login/Email combination is not correct, please try again.'],
-            defaultMessages: ['You have been successfully logged in.'],
+
+    strategies: [
+      NbPasswordAuthStrategy.setup({
+        name: 'email',
+        baseEndpoint: environment['authServer'],
+        login: {
+          alwaysFail: false,
+          rememberMe: true,
+          'endpoint': '/api/auth/token',
+          method: 'post',
+          redirect: {
+            success: '/',
+            failure: null,
           },
-          register: {
-            alwaysFail: false,
-            rememberMe: true,
-            endpoint: '/api/auth/register',
-            method: 'post',
-            redirect: {
-              success: '/',
-              failure: null,
-            },
-            defaultErrors: ['Something went wrong, please try again.'],
-            defaultMessages: ['You have been successfully registered.'],
+          defaultErrors: ['您的帳號密碼登入不正確，請重新輸入'],
+          defaultMessages: ['您已經成功登入'],
+        },
+        logout: {
+          alwaysFail: false,
+          endpoint: '/api/auth/logout',
+          method: 'post',
+          redirect: {
+            success: '/auth/login',
+            failure: '/auth/login',
           },
-          logout: {
-            alwaysFail: false,
-            endpoint: '/api/auth/logout',
-            method: 'post',
-            redirect: {
-              success: '/auth/login',
-              failure: '/auth/login',
-            },
-            defaultErrors: ['Something went wrong, please try again.'],
-            defaultMessages: ['You have been successfully logged out.'],
-          },
-          resetPass: {
-            endpoint: '/api/auth/reset-pass',
-            method: 'put',
-            redirect: {
-              success: '/',
-              failure: null,
-            },
-            resetPasswordTokenKey: 'reset_password_token',
-            defaultErrors: ['Something went wrong, please try again.'],
-            defaultMessages: ['Your password has been successfully changed.'],
-          },
-          refreshToken: {
-            endpoint: '/api/auth/refresh-token',
-            method: 'post',
-            redirect: {
-              success: null,
-              failure: null,
-            },
-            defaultErrors: ['Something went wrong, please try again.'],
-            defaultMessages: ['Your token has been successfully refreshed.'],
-          },
-          token: {
-            key: 'access_token', // this parameter tells Nebular where to look for the token
-          },
-          errors: {
-            key: 'errors',
-          },
-          messages: {
-            key: 'messages',
+          defaultErrors: ['有些不對勁，請再試一次'],
+          defaultMessages: ['您已經成功登出'],
+        },
+        requestPass: {
+          endpoint: '/api/auth/request-pass',
+          method: 'post',
+          redirect: {
+            success: '/auth/login',
+            failure: null,
           },
         },
-      },
-    },
+        resetPass: {
+          endpoint: '/api/auth/reset-pass',
+          method: 'put',
+          redirect: {
+            success: '/auth/login',
+            failure: null,
+          },
+          resetPasswordTokenKey: 'reset_password_token',
+          defaultErrors: ['有些不對勁，請再試一次'],
+          defaultMessages: ['您已經成功變更密碼'],
+        },
+        refreshToken: {
+          endpoint: '/api/auth/refresh-token',
+          method: 'post',
+          redirect: {
+            success: null,
+            failure: null,
+          },
+          defaultErrors: ['有些不對勁，請再試一次'],
+          defaultMessages: ['您已經成功更新通行碼'],
+        },
+        token: {
+          key: 'access_token', // this parameter tells Nebular where to look for the token
+          class: NbAuthJWTToken,
+        },
+        errors: {
+          key: 'errors',
+        },
+        messages: {
+          key: 'messages',
+        },
+      }),
+    ],
     forms: {
       login: {
         // delay before redirect after a successful login, while success message is shown to the user
-        redirectDelay: 500,
-        provider: 'email',  // provider id key. If you have multiple providers, or what to use your own
+        redirectDelay: 1000,
+        strategy: 'email',  // provider id key. If you have multiple providers, or what to use your own
         rememberMe: true,   // whether to show or not the `rememberMe` checkbox
         showMessages: {     // show/not show success/error messages
           success: true,
           error: true,
         },
-        socialLinks: socialLinks, // social links at the bottom of a page
       },
-      register: {
-        socialLinks: socialLinks,
+      requestPassword: {
+        redirectDelay: 10000,
+        strategy: 'email',
+        showMessages: {
+          success: true,
+          error: true,
+        },
+      },
+      resetPassword: {
+        redirectDelay: 4000,
+        strategy: 'email',
+        showMessages: {
+          success: true,
+          error: true,
+        },
+      },
+      logout: {
+        redirectDelay: 2000,
+        strategy: 'email',
       },
       validation: {
+        email: {
+          required: true,
+        },
         password: {
           required: true,
-          minLength: 3,
+          minLength: 8,
         },
       },
     },
@@ -115,23 +126,28 @@ const NB_CORE_PROVIDERS = [
   NbSecurityModule.forRoot({
     accessControl: {
       guest: {
-        view: '*',
+        view: [
+          'home',
+          'case-management',
+          'system-settings',
+        ],
       },
       user: {
         parent: 'guest',
+        view: '*',
         create: '*',
         edit: '*',
         remove: '*',
+      },
+      admin: {
+        parent: 'user',
+        view: '*',
       },
     },
   }).providers,
   {
     provide: NbRoleProvider,
-    useValue: {
-      getRole: () => {
-        return observableOf('guest'); // here you could provide any role based on any auth flow
-      },
-    },
+    useClass: RoleProvider,
   },
   AnalyticsService,
 ];
