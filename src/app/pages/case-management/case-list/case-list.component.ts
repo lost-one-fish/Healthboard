@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { PatientRestService } from '../../../@fhir/patient-rest.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import 'devextreme/data/odata/store';
 import DataSource from 'devextreme/data/data_source';
 
@@ -8,21 +7,23 @@ import DataSource from 'devextreme/data/data_source';
   templateUrl: './case-list.component.html',
   styleUrls: ['./case-list.component.css'],
 })
-export class CaseListComponent implements OnInit {
+export class CaseListComponent implements OnInit, OnChanges {
+
+  @Input()
+  dataSet = [];
+
   dataSource: DataSource;
-  private dataSet = [];
-  constructor(private patientService: PatientRestService) {
+
+  constructor() {
   }
 
   ngOnInit() {
-    this.patientService.fetchAll().subscribe(
-      next => {
-        this.dataSet = this.dataSet.concat(next);
-        this.dataSource = new DataSource(this.dataSet);
-      },
-      err => {
-        console.error(err);
-      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['dataSet']) {
+      this.dataSource = new DataSource(changes['dataSet'].currentValue);
+    }
   }
 
 }
