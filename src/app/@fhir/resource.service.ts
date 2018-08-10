@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { from } from 'rxjs/internal/observable/from';
-import { SmartContextHandler } from './smart-context-handler';
+import { SmartContextConfig } from './smart-context-config';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +9,18 @@ import { SmartContextHandler } from './smart-context-handler';
 export class ResourceService {
 
   private client: FHIR.SMART.Client;
+  private context: SmartContextConfig;
 
-  constructor(@Inject('SmartContextHandler') smartContextHandler: SmartContextHandler) {
-    this.client = FHIR.client(smartContextHandler.getContext());
+  set baseUrl(baseUrl: string) {
+    this.context = Object.assign(this.context, {
+      serviceUrl: baseUrl,
+    });
+    this.client = FHIR.client(this.context);
+  }
+
+  constructor(contextConfig: SmartContextConfig) {
+    this.context = contextConfig;
+    this.client = FHIR.client(this.context);
   }
 
   conformance(input: any) {

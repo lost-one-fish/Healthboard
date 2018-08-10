@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
-import { SmartContext } from '../../../@fhir/smart-context';
+import { ResourceService } from '../../../@fhir/resource.service';
 
 @Component({
   selector: 'ngx-header',
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
               private authService: NbAuthService,
               private router: Router,
               private analyticsService: AnalyticsService,
-              private smartContext: SmartContext) {
+              private resourceService: ResourceService) {
   }
 
   ngOnInit() {
@@ -61,6 +61,6 @@ export class HeaderComponent implements OnInit {
   }
 
   update(url) {
-    this.smartContext.baseUrl = url;
+    this.resourceService.baseUrl = url;
   }
 }

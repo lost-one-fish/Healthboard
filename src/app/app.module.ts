@@ -7,7 +7,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,7 @@ import { AuthGuard } from './@core/utils/auth-guard.service';
 import { TokenInterceptor } from './@core/utils/token.interceptor';
 import * as Raven from 'raven-js';
 import { environment } from '../environments/environment';
-import { SmartContext } from './@fhir/smart-context';
+import { fhirModule } from './@fhir/fhir.module';
 
 if (environment.production) {
   Raven
@@ -43,6 +43,14 @@ export class RavenErrorHandler implements ErrorHandler {
     HttpClientModule,
     AppRoutingModule,
 
+    fhirModule.forRoot({
+      serviceUrl: 'http://hapi.lan/baseDstu3',
+      auth: {
+        type: 'none',
+      },
+      patientId: '',
+      userId: '',
+    }),
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
@@ -53,7 +61,6 @@ export class RavenErrorHandler implements ErrorHandler {
     AuthGuard,
     {provide: ErrorHandler, useClass: RavenErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-    {provide: 'SmartContextHandler', useClass: SmartContext},
   ],
 })
 export class AppModule {
