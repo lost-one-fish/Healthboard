@@ -4,11 +4,11 @@ import 'devextreme/data/odata/store';
 import DataSource from 'devextreme/data/data_source';
 
 @Component({
-  selector: 'ngx-cases',
-  templateUrl: './cases.component.html',
-  styleUrls: ['./cases.component.css'],
+  selector: 'ngx-case-list',
+  templateUrl: './case-list.component.html',
+  styleUrls: ['./case-list.component.css'],
 })
-export class CasesComponent implements OnInit {
+export class CaseListComponent implements OnInit {
   dataSource: DataSource;
   private dataSet = [];
   constructor(private patientService: PatientRestService) {
