@@ -26,12 +26,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         icon: 'fa fa-user',
         title: '個案資料',
-        link: '/pages/case-management/cases',
-      },
-      {
-        icon: 'fa fa-user',
-        title: '居家服務接案表',
-        link: '/pages/case-management/new-case',
+        link: '/pages/case-management/',
       },
     ],
   },

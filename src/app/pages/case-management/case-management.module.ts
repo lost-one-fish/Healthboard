@@ -8,11 +8,13 @@ import { CasesComponent } from './cases/cases.component';
 import { NewCaseComponent } from './new-case/new-case.component';
 import { MatIconModule } from '@angular/material';
 import { DxDataGridModule } from 'devextreme-angular';
+import { IndexComponent } from './index/index.component';
 
 const components = [
   CasesComponent,
   NewCaseComponent,
   CaseManagementComponent,
+  IndexComponent,
 ];
 
 @NgModule({
