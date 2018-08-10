@@ -39,72 +39,21 @@
 
   <nb-card-body>
 
-    <ngx-datatable
-      class="bootstrap"
-      [columnMode]="'force'"
-      [rows]="rows"
+    <dx-data-grid id="gridContainer"
+                  [dataSource]="dataSource"
+                  [remoteOperations]="false"
+                  [allowColumnReordering]="true"
+                  [rowAlternationEnabled]="true"
+                  [showBorders]="true">
 
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [rowHeight]="40"
+      <dxo-paging [pageSize]="10"></dxo-paging>
 
-      [count]="count"
-      [limit]="limit"
-      [offset]="offset"
-      [externalPaging]="true"
-      [externalSorting]="true"
+      <dxi-column dataField="id" dataType="string" ></dxi-column>
+      <dxi-column dataField="name[0].family" dataType="string" ></dxi-column>
+      <dxi-column dataField="name[0].given[0]" dataType="string" ></dxi-column>
+      <dxi-column dataField="gender" dataType="string" ></dxi-column>
+      <dxi-column dataField="birthDate" dataType="string" ></dxi-column>
 
-      [loadingIndicator]="loading"
-      [messages]="localizationMessage"
-
-      (sort)="onSort($event)"
-      (page)="onPage($event)"
-      (activate)="onActivate($event)"
-    >
-      <ngx-datatable-column name="#" [width]="15" [sortable]="false">
-        <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
-          <strong>{{(rowIndex + 1) + (offset*limit)}}</strong>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="身分證字號" prop="_id" [width]="50">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <div *ngIf="row.resource && row.resource.id">
-            {{row.resource.id}}
-          </div>
-          <div *ngIf="!row.resource || !row.resource.id">
-            -
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="個案姓名" prop="name" >
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['family']">
-            {{row['resource']['name'][0]['family'][0]}}
-          </span>
-          <span *ngIf="row['resource']['name'] && row['resource']['name'][0]['given']">
-            {{row['resource']['name'][0]['given'][0]}}
-          </span>
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="申請結果" [width]="50" >
-        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
-          <!-- // TODO: 需搭配 Encounter https://www.hl7.org/fhir/encounter.html -->
-          -
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="接案日期" [width]="50" >
-        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
-          <!-- // TODO: 需搭配 Encounter https://www.hl7.org/fhir/encounter.html -->
-          -
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="" [width]="37" >
-        <ng-template let-row="row" let-column="column" ngx-datatable-cell-template>
-          <div *ngIf="selectedRow != null && row['resource']['id'] == selectedRow['resource']['id']">
-            <mat-icon class="text-center">location_on</mat-icon>
-          </div>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
+    </dx-data-grid>
   </nb-card-body>
 </nb-card>

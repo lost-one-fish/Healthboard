@@ -6,8 +6,8 @@ import { CaseManagementComponent } from './case-management.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { CasesComponent } from './cases/cases.component';
 import { NewCaseComponent } from './new-case/new-case.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatIconModule } from '@angular/material';
+import { DxDataGridModule } from 'devextreme-angular';
 
 const components = [
   CasesComponent,
@@ -21,7 +21,7 @@ const components = [
     ThemeModule,
     CaseManagementRoutingModule,
     MatIconModule,
-    NgxDatatableModule,
+    DxDataGridModule,
   ],
   declarations: [
     ...components,
