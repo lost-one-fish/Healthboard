@@ -4,7 +4,6 @@ import { of as observableOf, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 export class BasicService<T> {
-  private COUNT = 50;
   URL: string;
 
   resourceType = '';

@@ -33,7 +33,7 @@ export class ManageOrganizationComponent implements OnInit {
     try {
       if (!this.dataSet[page]) {
         if (this.keyword && !this.sort.sorts[0]) {
-          this.organizationRestService.fetchAll('Organization').subscribe(
+          this.organizationRestService.fetchAll().subscribe(
             bundles => this.storageData(bundles[0], page),
             err => {
               console.error(err);
@@ -41,7 +41,7 @@ export class ManageOrganizationComponent implements OnInit {
             });
         } else if (this.sort.sorts[0]) {
         } else {
-          this.organizationRestService.fetchAll('Organization').subscribe(
+          this.organizationRestService.fetchAll().subscribe(
             bundles => {
               this.storageData(bundles[0], page);
             },

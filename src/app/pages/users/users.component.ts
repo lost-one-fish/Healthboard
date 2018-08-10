@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BodyOutputType, ToasterConfig, ToasterService } from 'angular2-toaster';
+import { BodyOutputType, ToasterConfig } from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
     bodyOutputType: BodyOutputType.TrustedHtml,
   });
 
-  constructor(private toasterService: ToasterService) { }
+  constructor() { }
 
   ngOnInit() {
     this.loading = true;

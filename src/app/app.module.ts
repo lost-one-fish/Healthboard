@@ -18,7 +18,7 @@ import { AuthGuard } from './@core/utils/auth-guard.service';
 import { TokenInterceptor } from './@core/utils/token.interceptor';
 import * as Raven from 'raven-js';
 import { environment } from '../environments/environment';
-import { fhirModule } from './@fhir/fhir.module';
+import { FhirModule } from './@fhir/fhir.module';
 
 if (environment.production) {
   Raven
@@ -43,7 +43,7 @@ export class RavenErrorHandler implements ErrorHandler {
     HttpClientModule,
     AppRoutingModule,
 
-    fhirModule.forRoot({
+    FhirModule.forRoot({
       serviceUrl: 'http://hapi.lan/baseDstu3',
       auth: {
         type: 'none',

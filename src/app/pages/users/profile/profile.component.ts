@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import { BodyOutputType, ToasterConfig, ToasterService } from 'angular2-toaster';
+import { BodyOutputType, ToasterConfig } from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 
@@ -25,8 +25,7 @@ export class ProfileComponent implements OnInit {
   data: any;
   user: string; // From Token Information
 
-  constructor(private authService: NbAuthService,
-              private toasterService: ToasterService) {
+  constructor(private authService: NbAuthService) {
   }
 
   ngOnInit() {

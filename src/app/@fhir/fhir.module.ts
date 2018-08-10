@@ -9,7 +9,7 @@ import { SmartContextConfig } from './smart-context-config';
   ],
   declarations: [],
 })
-export class fhirModule {
+export class FhirModule {
 
   static forRoot(config: SmartContextConfig): ModuleWithProviders {
     return {

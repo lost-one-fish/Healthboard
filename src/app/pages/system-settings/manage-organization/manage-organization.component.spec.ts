@@ -8,7 +8,7 @@ describe('ManageOrganizationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageOrganizationComponent ]
+      declarations: [ ManageOrganizationComponent ],
     })
     .compileComponents();
   }));

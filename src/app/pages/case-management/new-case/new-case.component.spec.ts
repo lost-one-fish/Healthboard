@@ -8,7 +8,7 @@ describe('NewCaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewCaseComponent ]
+      declarations: [ NewCaseComponent ],
     })
     .compileComponents();
   }));

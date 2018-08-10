@@ -43,7 +43,7 @@ export class CasesComponent implements OnInit {
           // TODO
         } else if (this.sort.sorts[0]) {
         } else {
-          this.patientService.fetchAll('Patient').subscribe(
+          this.patientService.fetchAll().subscribe(
             bundles => {
               this.storageData(bundles[0], page);
             },

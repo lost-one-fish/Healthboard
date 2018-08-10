@@ -8,7 +8,7 @@ describe('SystemSettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SystemSettingsComponent ]
+      declarations: [ SystemSettingsComponent ],
     })
     .compileComponents();
   }));
