@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientRestService } from '../../../@core/service/patient-rest.service';
+import { PatientRestService } from '../../../@fhir/patient-rest.service';
 
 @Component({
   selector: 'ngx-cases',

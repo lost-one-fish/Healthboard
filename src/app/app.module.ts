@@ -18,7 +18,7 @@ import { AuthGuard } from './@core/utils/auth-guard.service';
 import { TokenInterceptor } from './@core/utils/token.interceptor';
 import * as Raven from 'raven-js';
 import { environment } from '../environments/environment';
-import { SmartContext } from './@core/service/smart-context';
+import { SmartContext } from './@fhir/smart-context';
 
 if (environment.production) {
   Raven

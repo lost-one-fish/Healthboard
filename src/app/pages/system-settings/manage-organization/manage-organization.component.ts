@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationRestService } from '../../../@core/service/organization-rest.service';
+import { OrganizationRestService } from '../../../@fhir/organization-rest.service';
 
 @Component({
   selector: 'ngx-manage-organization',

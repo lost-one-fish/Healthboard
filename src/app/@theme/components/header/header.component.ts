@@ -4,7 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { Router } from '@angular/router';
-import { SmartContext } from '../../../@core/service/smart-context';
+import { SmartContext } from '../../../@fhir/smart-context';
 
 @Component({
   selector: 'ngx-header',
