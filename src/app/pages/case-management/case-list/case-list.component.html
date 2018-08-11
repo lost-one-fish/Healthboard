@@ -1,21 +1,20 @@
 
 <nb-card>
-  <nb-card-header>
-    個案資料
-  </nb-card-header>
-
   <nb-card-body>
 
     <dx-data-grid id="gridContainer"
                   [dataSource]="dataSource"
-                  [remoteOperations]="false"
-                  [allowColumnReordering]="true"
-                  [rowAlternationEnabled]="true"
                   [showBorders]="true">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
 
-      <dxi-column dataField="identifier[0].value" dataType="string" ></dxi-column>
+      <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
+        <dxo-popup title="個案資訊" [showTitle]="true" [width]="700" [height]="400">
+
+        </dxo-popup>
+      </dxo-editing>
+      <dxi-column dataField="id" dataType="string" [width]="100"></dxi-column>
+      <dxi-column dataField="identifier[0].value" dataType="string" [setCellValue]="setIdentifier" ></dxi-column>
       <dxi-column dataField="name[0].text" dataType="string" ></dxi-column>
       <dxi-column dataField="gender" dataType="string" ></dxi-column>
       <dxi-column dataField="birthDate" dataType="string" ></dxi-column>

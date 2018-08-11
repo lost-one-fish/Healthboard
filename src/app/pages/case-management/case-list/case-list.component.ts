@@ -26,4 +26,12 @@ export class CaseListComponent implements OnInit, OnChanges {
     }
   }
 
+  setIdentifier(rawData, val) {
+    if (rawData.identifier === undefined || rawData.identifier.isEmpty) {
+      rawData.identifier = [];
+    }
+    rawData.identifier[0] = {
+      value: val,
+    };
+  }
 }
