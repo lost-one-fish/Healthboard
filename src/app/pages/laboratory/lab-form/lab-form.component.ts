@@ -15,15 +15,7 @@ export class LabFormComponent implements OnInit, OnChanges {
   value;
   now;
 
-  items = [{
-    location: 'after',
-    widget: 'dxButton',
-    locateInMenu: 'auto',
-    options: {
-      icon: 'save',
-      onClick: this.onSave,
-    },
-  }];
+  items = [];
 
   constructor() {
   }
@@ -38,6 +30,22 @@ export class LabFormComponent implements OnInit, OnChanges {
 
     this.value = 0;
     this.now = new Date();
+
+    this.items = [{
+      location: 'before',
+      locateInMenu: 'never',
+      template: () => {
+        return '<div class=\'toolbar-label\'><h2> ' + this.classification['class'] + '</h2></div>';
+      },
+    }, {
+      location: 'after',
+      widget: 'dxButton',
+      locateInMenu: 'auto',
+      options: {
+        icon: 'save',
+        onClick: this.onSave,
+      },
+    }];
   }
 
   onSave() {
