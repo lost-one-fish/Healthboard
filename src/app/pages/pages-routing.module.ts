@@ -14,6 +14,9 @@ const routes: Routes = [{
     path: 'case-management',
     loadChildren: './case-management/case-management.module#CaseManagementModule',
   }, {
+    path: 'laboratory',
+    loadChildren: './laboratory/laboratory.module#LaboratoryModule',
+  }, {
     path: 'system-settings',
     loadChildren: './system-settings/system-settings.module#SystemSettingsModule',
   }, {

@@ -31,6 +31,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '檢驗值',
+    icon: 'fa fa fa-bar-chart',
+    link: '/pages/laboratory/',
+    data: {
+      permission: 'view',
+      resource: 'laboratory',
+    },
+  },
+  {
     title: '系統設定',
     icon: 'fa fa fa-wrench',
     link: '/pages/system-settings',

@@ -129,6 +129,7 @@ export const NB_CORE_PROVIDERS = [
         view: [
           'home',
           'case-management',
+          'laboratory',
           'system-settings',
         ],
       },
