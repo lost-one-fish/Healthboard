@@ -92,6 +92,7 @@ export class IndexComponent implements OnInit {
 
   findPatient(identifier) {
     console.info(identifier);
+    this.patient = null;
     this.patientRestService.fetchAll({
       'identifier': identifier,
     }).subscribe(next => {
