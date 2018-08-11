@@ -1,0 +1,13 @@
+@import '../../../@theme/styles/themes';
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/bootstrap/breakpoints';
+
+@include nb-install-component() {
+  $slide-out-container-width: nb-theme(slide-out-container-width);
+
+  @include media-breakpoint-down(md) {
+  }
+
+  @include media-breakpoint-down(is) {
+  }
+}
