@@ -5,7 +5,8 @@
                   [dataSource]="dataSource"
                   [showRowLines]="true"
                   [showColumnLines]="true"
-                  [showBorders]="true">
+                  [showBorders]="true"
+                  (onToolbarPreparing)="onToolbarPreparing($event)">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
 

@@ -34,4 +34,20 @@ export class CaseListComponent implements OnInit, OnChanges {
       value: val,
     };
   }
+
+  onToolbarPreparing(e) {
+    e.toolbarOptions.items.unshift({
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        icon: 'refresh',
+        onClick: this.refreshDataGrid.bind(this),
+      },
+    });
+  }
+
+  refreshDataGrid() {
+    // TODO: emit refresh event
+  }
+
 }
