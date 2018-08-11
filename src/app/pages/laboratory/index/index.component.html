@@ -12,7 +12,7 @@
           </ngb-tabset>
         </div>
         <div class="col-md-9">
-          <ngx-lab-form [classification]="selectedClassification"></ngx-lab-form>
+          <ngx-lab-form [classification]="selectedClassification" (resource)="onSave($event)"></ngx-lab-form>
         </div>
       </div>
     </div>

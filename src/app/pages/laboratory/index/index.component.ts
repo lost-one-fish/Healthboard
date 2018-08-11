@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObservationRestService } from '../../../@fhir/observation-rest.service';
 
 @Component({
   selector: 'ngx-index',
@@ -67,7 +68,7 @@ export class IndexComponent implements OnInit {
 
   selectedClassification = this.classifications[0];
 
-  constructor() {
+  constructor(private observationRestService: ObservationRestService) {
   }
 
   ngOnInit() {
@@ -75,5 +76,11 @@ export class IndexComponent implements OnInit {
 
   onSelectClassification(selected) {
     this.selectedClassification = this.classifications.find(v => v.class === selected);
+  }
+
+  onSave(resource) {
+    this.observationRestService.create({
+      resource: resource,
+    });
   }
 }
