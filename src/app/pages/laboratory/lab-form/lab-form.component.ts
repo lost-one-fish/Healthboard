@@ -44,7 +44,9 @@ export class LabFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['subject'] && changes['subject'].currentValue) {
       this.data = Object.assign(this.data, {
-        subject: 'Patient/' + changes['subject'].currentValue.id,
+        subject: {
+          reference: 'Patient/' + changes['subject'].currentValue.id,
+        },
       });
       return;
     }

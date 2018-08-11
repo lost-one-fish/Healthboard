@@ -88,10 +88,6 @@ export class IndexComponent implements OnInit {
       return;
     }
 
-    resource['subject'] = {
-      id: 'Patient/' + this.patient.id,
-    };
-
     this.observationRestService.create({
       resource: resource,
     }).subscribe(next => {
