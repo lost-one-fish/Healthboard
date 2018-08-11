@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservationRestService } from '../../../@fhir/observation-rest.service';
+import notify from '../../../../../node_modules/devextreme/ui/notify';
 
 @Component({
   selector: 'ngx-index',
@@ -81,6 +82,8 @@ export class IndexComponent implements OnInit {
   onSave(resource) {
     this.observationRestService.create({
       resource: resource,
+    }).subscribe(next => {
+      notify('新增成功');
     });
   }
 }
