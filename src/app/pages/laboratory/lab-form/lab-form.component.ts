@@ -21,9 +21,7 @@ export class LabFormComponent implements OnInit, OnChanges {
     locateInMenu: 'auto',
     options: {
       icon: 'save',
-      onClick: () => {
-        notify('Add button has been clicked!');
-      },
+      onClick: this.onSave,
     },
   }];
 
@@ -40,5 +38,9 @@ export class LabFormComponent implements OnInit, OnChanges {
 
     this.value = 0;
     this.now = new Date();
+  }
+
+  onSave() {
+    notify('Add button has been clicked!');
   }
 }

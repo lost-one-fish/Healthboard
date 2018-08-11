@@ -1,15 +1,16 @@
 <nb-card>
   <nb-card-header>
-    {{classification['class']}}
+    <h2>{{classification['class']}}</h2>
   </nb-card-header>
   <nb-card-body>
     <dx-toolbar [items]="items"></dx-toolbar>
     <div class="form">
       <div class="dx-fieldset">
         <div class="dx-field">
-          <div class="dx-field-label">數值</div>
+          <div class="dx-field-label mat-h2">數值</div>
           <div class="dx-field-value">
             <dx-number-box
+              class="mat-h2"
               [value]="value"
               [format]="format"
               [showSpinButtons]="true"
@@ -18,9 +19,10 @@
           </div>
         </div>
         <div class="dx-field">
-          <div class="dx-field-label">測量日期時間</div>
+          <div class="dx-field-label mat-h2">測量日期時間</div>
           <div class="dx-field-value">
             <dx-date-box
+              class="mat-h2"
               type="datetime"
               displayFormat="yyyy-MM-dd'T'hh:mm:ss"
               [value]="now"
