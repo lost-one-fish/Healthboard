@@ -12,6 +12,7 @@ export class LabFormComponent implements OnInit, OnChanges {
   classification;
 
   format;
+  value;
   now;
 
   items = [{
@@ -36,5 +37,8 @@ export class LabFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const value = changes['classification'].currentValue;
     this.format = '#0.## ' + value['unit'];
+
+    this.value = 0;
+    this.now = new Date();
   }
 }
