@@ -2,6 +2,24 @@
   <nb-card-body>
     <div class="container">
       <div class="row">
+        <div class="col-md-12">
+
+          <div class="dx-field">
+            <div class="dx-field-label mat-h2">身份證字號</div>
+            <div class="dx-field-value">
+              <dx-text-box
+                class="mat-h2"
+                value="A123456789"
+                [showClearButton]="true"
+                valueChangeEvent="blur"
+                (onValueChanged)="findPatient($event.value)">
+              </dx-text-box>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-3">
           <ngb-tabset type="pills" [orientation]="vertical" (tabChange)="onSelectClassification($event.nextId)">
             <ng-container *ngFor="let item of classifications">
