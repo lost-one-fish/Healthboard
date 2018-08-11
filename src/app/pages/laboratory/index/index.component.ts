@@ -83,6 +83,15 @@ export class IndexComponent implements OnInit {
   }
 
   onSave(resource) {
+    if (!this.patient) {
+      notify('請先以身份證字號搜尋病人');
+      return;
+    }
+
+    resource['subject'] = {
+      id: 'Patient/' + this.patient.id,
+    };
+
     this.observationRestService.create({
       resource: resource,
     }).subscribe(next => {
