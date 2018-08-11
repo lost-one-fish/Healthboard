@@ -3,5 +3,30 @@
     {{title}}
   </nb-card-header>
   <nb-card-body>
+    <div class="form">
+      <div class="dx-fieldset">
+        <div class="dx-field">
+          <div class="dx-field-label">數值</div>
+          <div class="dx-field-value">
+            <dx-number-box
+              [format]="format"
+              [showSpinButtons]="true"
+              [showClearButton]="true">
+            </dx-number-box>
+          </div>
+        </div>
+        <div class="dx-field">
+          <div class="dx-field-label">測量日期時間</div>
+          <div class="dx-field-value">
+            <dx-date-box
+              type="datetime"
+              displayFormat="yyyy-MM-dd'T'hh:mm:ss"
+              [value]="now"
+              [showClearButton]="true">
+            </dx-date-box>
+          </div>
+        </div>
+      </div>
+    </div>
   </nb-card-body>
 </nb-card>
