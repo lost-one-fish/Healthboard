@@ -1,8 +1,9 @@
 <nb-card>
   <nb-card-header>
-    {{title}}
+    {{classification['class']}}
   </nb-card-header>
   <nb-card-body>
+    <dx-toolbar [items]="items"></dx-toolbar>
     <div class="form">
       <div class="dx-fieldset">
         <div class="dx-field">
