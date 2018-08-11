@@ -19,12 +19,18 @@ export class LabFormComponent implements OnInit, OnChanges {
   @Input()
   classification;
 
+  @Input()
+  subject;
+
   @Output()
   resource: EventEmitter<any> = new EventEmitter();
 
   format;
   value;
   now;
+  data = {
+    'resourceType': 'Observation',
+  };
 
   items = [];
 
@@ -36,11 +42,32 @@ export class LabFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['subject'] && changes['subject'].currentValue) {
+      this.data = Object.assign(this.data, {
+        subject: 'Patient/' + changes['subject'].currentValue.id,
+      });
+      return;
+    }
+
+    if (!changes['classification']) {
+      return;
+    }
+
     const value = changes['classification'].currentValue;
     this.format = '#0.## ' + value['unit'];
 
     this.value = 0;
     this.now = new Date();
+
+    this.data = Object.assign(this.data, {
+      'code': {
+        'coding': [
+          {
+            'code': value['code'],
+          },
+        ],
+      },
+    });
 
     this.items = [{
       location: 'before',
@@ -68,26 +95,27 @@ export class LabFormComponent implements OnInit, OnChanges {
             return;
           }
 
-          const resource = {
-            'resourceType': 'Observation',
-            'code': {
-              'coding': [
-                {
-                  'code': this.classification['code'],
-                },
-              ],
-            },
-            'subject': {},
+          const resource = Object.assign(this.data, {
             'effectiveDateTime': this.now,
             'valueQuantity': {
               'value': this.value,
               'unit': this.classification['unit'],
             },
-          };
+          });
 
           this.resource.emit(resource);
         },
       },
     }];
+  }
+
+  onUpdate(event) {
+    this.data = Object.assign(this.data, {
+      'effectiveDateTime': this.now,
+      'valueQuantity': {
+        'value': this.value,
+        'unit': this.classification['unit'],
+      },
+    });
   }
 }

@@ -13,7 +13,8 @@
               [(value)]="value"
               [format]="format"
               [showSpinButtons]="true"
-              [showClearButton]="true">
+              [showClearButton]="true"
+              (onValueChanged)="onUpdate($event)">
             </dx-number-box>
           </div>
         </div>
@@ -24,9 +25,16 @@
               class="mat-h2"
               type="datetime"
               displayFormat="yyyy-MM-dd'T'hh:mm:ss"
-              [value]="now"
-              [showClearButton]="true">
+              [(value)]="now"
+              [showClearButton]="true"
+              (onValueChanged)="onUpdate($event)">
             </dx-date-box>
+          </div>
+        </div>
+        <hr />
+        <div class="dx-field">
+          <div class="mat-h2">
+            <pre>{{data | json}}</pre>
           </div>
         </div>
       </div>
