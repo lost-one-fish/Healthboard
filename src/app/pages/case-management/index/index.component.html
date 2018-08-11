@@ -1,7 +1,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 col-lg-12">
-      <ngx-case-list [dataSet]="dataSet"></ngx-case-list>
+      <ngx-case-list id="cases" [dataSet]="dataSet"></ngx-case-list>
     </div>
   </div>
 </div>
+
+<dx-load-panel
+  #loadPanel
+  shadingColor="rgba(0,0,0,0.4)"
+  [position]="{ of: '#cases' }"
+  [(visible)]="loadingVisible"
+  [showIndicator]="true"
+  [showPane]="true"
+  [shading]="true"
+  [closeOnOutsideClick]="false">
+</dx-load-panel>
