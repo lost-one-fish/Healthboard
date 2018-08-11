@@ -1,9 +1,10 @@
-
 <nb-card>
   <nb-card-body>
 
     <dx-data-grid id="gridContainer"
                   [dataSource]="dataSource"
+                  [showRowLines]="true"
+                  [showColumnLines]="true"
                   [showBorders]="true">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
@@ -13,17 +14,31 @@
 
         </dxo-popup>
       </dxo-editing>
-      <dxi-column dataField="id" dataType="string" [width]="100"></dxi-column>
-      <dxi-column dataField="identifier[0].value" dataType="string" [setCellValue]="setIdentifier" ></dxi-column>
-      <dxi-column dataField="name[0].text" dataType="string" ></dxi-column>
-      <dxi-column dataField="gender" dataType="string" ></dxi-column>
-      <dxi-column dataField="birthDate" dataType="string" ></dxi-column>
-      <dxi-column dataField="address.text" dataType="string" ></dxi-column>
-      <dxi-column dataField="telecom.system" dataType="string" ></dxi-column>
-      <dxi-column dataField="contact.name.text" dataType="string" ></dxi-column>
-      <dxi-column dataField="contact.relationship.text" dataType="string" ></dxi-column>
-      <dxi-column dataField="contact.telecom" dataType="string" ></dxi-column>
+      <dxi-column dataField="identifier[0].value" caption="身份證字號" dataType="string"
+                  [width]="150"
+                  [setCellValue]="setIdentifier"></dxi-column>
+      <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="100"></dxi-column>
+      <dxi-column dataField="gender" caption="性別" dataType="string" [width]="50"></dxi-column>
+      <dxi-column dataField="birthDate" caption="出生日期" dataType="string" [width]="100"></dxi-column>
+      <dxi-column dataField="address.text" caption="聯絡地址" dataType="string"></dxi-column>
+      <dxi-column caption="聯絡電話" dataType="string" cellTemplate="telecomTemplate" [width]="100"></dxi-column>
+      <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"></dxi-column>
 
+      <div *dxTemplate="let row of 'telecomTemplate'">
+        <div *ngFor="let item of row.data.telecom; let i = index">
+          <div *ngIf="item.system === 'phone'"> {{item.value}} </div>
+        </div>
+      </div>
+      <div *dxTemplate="let row of 'contactTemplate'">
+        <div *ngIf="row.data.contact">
+          <div> {{row.data?.contact[0]?.name?.text}} </div>
+          <div> {{row.data?.contact[0]?.relationship[0]?.text}} </div>
+          <div *ngFor="let item of row.data.contact[0].telecom; let i = index">
+            <div *ngIf="item.system === 'phone'"> 聯絡電話：{{item.value}} </div>
+            <div *ngIf="item.system === 'email'"> 電子郵件：{{item.value}} </div>
+          </div>
+        </div>
+      </div>
     </dx-data-grid>
   </nb-card-body>
 </nb-card>
