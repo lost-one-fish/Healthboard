@@ -26,14 +26,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         icon: 'fa fa-user',
         title: '個案資料',
-        link: '/pages/case-management/',
+        link: '/pages/case-management/index',
       },
     ],
   },
   {
     title: '檢驗值',
     icon: 'fa fa fa-bar-chart',
-    link: '/pages/laboratory/',
+    link: '/pages/laboratory/index',
     data: {
       permission: 'view',
       resource: 'laboratory',

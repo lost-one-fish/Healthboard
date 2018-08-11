@@ -7,7 +7,7 @@ const routes: Routes = [{
   path: '',
   component: LaboratoryComponent,
   children: [{
-    path: '',
+    path: 'index',
     component: IndexComponent,
   }],
 }];

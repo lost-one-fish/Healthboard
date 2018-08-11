@@ -7,7 +7,7 @@ const routes: Routes = [{
   path: '',
   component: CaseManagementComponent,
   children: [{
-    path: '',
+    path: 'index',
     component: IndexComponent,
   }],
 }];
