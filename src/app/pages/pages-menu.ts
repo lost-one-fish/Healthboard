@@ -17,7 +17,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: '個案管理',
-    icon: 'fa fa fa-bar-chart',
+    icon: 'fa fa fa-users',
     data: {
       permission: 'view',
       resource: 'case-management',
