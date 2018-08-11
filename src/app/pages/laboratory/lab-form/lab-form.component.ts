@@ -1,5 +1,13 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import notify from 'devextreme/ui/notify';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import notify from '../../../../../node_modules/devextreme/ui/notify';
 
 @Component({
   selector: 'ngx-lab-form',
@@ -10,6 +18,9 @@ export class LabFormComponent implements OnInit, OnChanges {
 
   @Input()
   classification;
+
+  @Output()
+  resource: EventEmitter<any> = new EventEmitter();
 
   format;
   value;
@@ -35,7 +46,7 @@ export class LabFormComponent implements OnInit, OnChanges {
       location: 'before',
       locateInMenu: 'never',
       template: () => {
-        return '<div class=\'toolbar-label\'><h2> ' + this.classification['class'] + '</h2></div>';
+        return '<div class=\'toolbar-label\'><h2> ' + value['class'] + '</h2></div>';
       },
     }, {
       location: 'after',
@@ -43,12 +54,40 @@ export class LabFormComponent implements OnInit, OnChanges {
       locateInMenu: 'auto',
       options: {
         icon: 'save',
-        onClick: this.onSave,
+        onClick: () => {
+          if (!this.classification['code']) {
+            notify('Not Found the code');
+            return;
+          }
+          if (!this.classification['unit']) {
+            notify('Not Found the unit');
+            return;
+          }
+          if (this.value <= 0) {
+            notify('The value is empty.');
+            return;
+          }
+
+          const resource = {
+            'resourceType': 'Observation',
+            'code': {
+              'coding': [
+                {
+                  'code': this.classification['code'],
+                },
+              ],
+            },
+            'subject': {},
+            'effectiveDateTime': this.now,
+            'valueQuantity': {
+              'value': this.value,
+              'unit': this.classification['unit'],
+            },
+          };
+
+          this.resource.emit(resource);
+        },
       },
     }];
-  }
-
-  onSave() {
-    notify('Add button has been clicked!');
   }
 }
