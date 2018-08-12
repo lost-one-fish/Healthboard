@@ -9,6 +9,18 @@ export class IndexComponent implements OnInit {
 
   currentDate: Date = new Date();
 
+  resourceType = [
+    {
+      text: "Condition",
+      id: "Condition",
+      color: "#1e90ff"
+    }, {
+      text: "Procedure",
+      id: "Procedure",
+      color: "#ff9747"
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {
