@@ -22,7 +22,7 @@ import { FhirModule } from './@fhir/fhir.module';
 
 if (environment.production) {
   Raven
-  .config('https://5e82929add644c0b9823867283c6514a@sentry.io/1254197')
+  .config('https://dc388ad5e68f4ad7a3428baa06ecea6b@sentry.io/1260940')
   .install();
 }
 
