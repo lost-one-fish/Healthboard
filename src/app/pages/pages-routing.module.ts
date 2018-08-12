@@ -17,6 +17,9 @@ const routes: Routes = [{
     path: 'laboratory',
     loadChildren: './laboratory/laboratory.module#LaboratoryModule',
   }, {
+    path: 'history',
+    loadChildren: './history/history.module#HistoryModule',
+  }, {
     path: 'system-settings',
     loadChildren: './system-settings/system-settings.module#SystemSettingsModule',
   }, {

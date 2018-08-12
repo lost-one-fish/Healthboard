@@ -40,6 +40,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: '病史',
+    icon: 'fa fa fa-bar-chart',
+    link: '/pages/history/index',
+    data: {
+      permission: 'view',
+      resource: 'history',
+    },
+  },
+  {
     title: '系統設定',
     icon: 'fa fa fa-wrench',
     link: '/pages/system-settings',
