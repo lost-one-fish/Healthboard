@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConditionRestService } from '../../../@fhir/condition-rest.service';
+import { ProcedureRestService } from '../../../@fhir/procedure-rest.service';
 
 @Component({
   selector: 'ngx-index',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  dataSet = [];
+  loadingVisible = false;
   currentDate: Date = new Date();
 
   resourceType = [
@@ -21,9 +25,42 @@ export class IndexComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private conditionRestService: ConditionRestService,
+              private procedureRestService: ProcedureRestService) {
+  }
 
   ngOnInit() {
+    this.loadingVisible = true;
+    this.conditionRestService.fetchAll().subscribe(next => {
+      next = next.map(entity => {
+        if (entity['onsetPeriod']) {
+          entity['start'] = entity['onsetPeriod']['start'];
+          entity['end'] = entity['onsetPeriod']['end'];
+        }
+        return entity;
+      });
+      this.dataSet = this.dataSet.concat(next);
+    }, err => {
+      console.error(err);
+    }, () => {
+      this.loadingVisible = false;
+    });
+
+    this.loadingVisible = true;
+    this.procedureRestService.fetchAll().subscribe(next => {
+      next = next.map(entity => {
+        if (entity['performedPeriod']) {
+          entity['start'] = entity['performedPeriod']['start'];
+          entity['end'] = entity['performedPeriod']['end'];
+        }
+        return entity;
+      });
+      this.dataSet = this.dataSet.concat(next);
+    }, err => {
+      console.error(err);
+    }, () => {
+      this.loadingVisible = false;
+    });
   }
 
 }

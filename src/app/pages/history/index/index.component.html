@@ -1,6 +1,10 @@
 <dx-scheduler
+  [dataSource]="dataSet"
   [views]='["timelineDay", "timelineWeek", "timelineMonth"]'
   currentView="timelineWeek"
+  startDateExpr="start"
+  endDateExpr="end"
+  textExpr="code.coding[0].display"
   [firstDayOfWeek]="0"
   [startDayHour]="0"
   [endDayHour]="24"
