@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  currentDate: Date = new Date();
+
   constructor() { }
 
   ngOnInit() {

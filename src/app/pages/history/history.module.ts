@@ -6,10 +6,12 @@ import { HistoryComponent } from './history.component';
 import { IndexComponent } from './index/index.component';
 import { ConditionListComponent } from './condition-list/condition-list.component';
 import { ProcedureListComponent } from './procedure-list/procedure-list.component';
+import { DxSchedulerModule } from 'devextreme-angular/ui/scheduler';
 
 @NgModule({
   imports: [
     CommonModule,
+    DxSchedulerModule,
     HistoryRoutingModule
   ],
   declarations: [HistoryComponent, IndexComponent, ConditionListComponent, ProcedureListComponent]
