@@ -15,6 +15,11 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.dataSet = [];
     this.loadingVisible = true;
     this.patientService.fetchAll().subscribe(
       next => {

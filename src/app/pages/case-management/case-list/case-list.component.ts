@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import 'devextreme/data/odata/store';
 import DataSource from 'devextreme/data/data_source';
 
@@ -11,6 +19,9 @@ export class CaseListComponent implements OnInit, OnChanges {
 
   @Input()
   dataSet = [];
+
+  @Output()
+  refresh = new EventEmitter();
 
   dataSource: DataSource;
 
@@ -47,7 +58,7 @@ export class CaseListComponent implements OnInit, OnChanges {
   }
 
   refreshDataGrid() {
-    // TODO: emit refresh event
+    this.refresh.emit({});
   }
 
 }
