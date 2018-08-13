@@ -13,7 +13,7 @@ import DataSource from 'devextreme/data/data_source';
 @Component({
   selector: 'ngx-case-list',
   templateUrl: './case-list.component.html',
-  styleUrls: ['./case-list.component.css'],
+  styleUrls: ['./case-list.component.scss'],
 })
 export class CaseListComponent implements OnInit, OnChanges {
 
