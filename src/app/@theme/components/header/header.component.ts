@@ -5,6 +5,7 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
 import { ResourceService } from '../../../@fhir/resource.service';
+import notify from '../../../../../node_modules/devextreme/ui/notify';
 
 @Component({
   selector: 'ngx-header',
@@ -62,5 +63,12 @@ export class HeaderComponent implements OnInit {
 
   update(url) {
     this.resourceService.baseUrl = url;
+    notify({
+      position: {
+        at: 'right top',
+        offset: '0 95',
+      },
+      message: 'Base URL 更新為 ' + url,
+    });
   }
 }
