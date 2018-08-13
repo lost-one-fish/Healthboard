@@ -38,12 +38,70 @@ export class CaseListComponent implements OnInit, OnChanges {
   }
 
   setIdentifier(rawData, val) {
-    if (rawData.identifier === undefined || rawData.identifier.isEmpty) {
-      rawData.identifier = [];
-    }
+    rawData.identifier = [];
     rawData.identifier[0] = {
       value: val,
     };
+  }
+
+  setName(rawData, val) {
+    rawData.name = [];
+    rawData.name[0] = {
+      text: val,
+    };
+  }
+
+  setGender(rawData, val) {
+    rawData.gender = val;
+  }
+
+  setBirthDate(rawData, val) {
+    rawData.birthDate = val;
+  }
+
+  setAddress(rawData, val) {
+    rawData.address = [];
+    rawData.address[0] = {
+      text: val,
+    };
+  }
+
+  setTelecom(rawData, val) {
+    rawData.telecom = [];
+    rawData.telecom[0] = {
+      system: 'phone',
+      value: val,
+    };
+  }
+
+  setContact(rawData, val) {
+  }
+
+  onRowInserting(e) {
+    const patient = {
+      'resourceType': 'Patient',
+    };
+    patient['identifier'] = e.data.identifier;
+    patient['name'] = e.data.name;
+    patient['gender'] = e.data.gender;
+    patient['birthDate'] = e.data.birthDate;
+    patient['address'] = e.data.address;
+    patient['telecom'] = e.data.telecom;
+  }
+
+  onRowInserted(e) {
+  }
+
+  onRowUpdating(e) {
+  }
+
+  onRowUpdated(e) {
+  }
+
+  onRowRemoving(e) {
+  }
+
+  onRowRemoved(e) {
   }
 
   onToolbarPreparing(e) {

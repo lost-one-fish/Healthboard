@@ -6,24 +6,49 @@
                   [showRowLines]="true"
                   [showColumnLines]="true"
                   [showBorders]="true"
+
+                  (onRowInserting)="onRowInserting($event)"
+                  (onRowInserted)="onRowInserted($event)"
+                  (onRowUpdated)="onRowUpdated($event)"
+                  (onRowUpdating)="onRowUpdating($event)"
+                  (onRowRemoving)="onRowRemoving($event)"
+                  (onRowRemoved)="onRowRemoved($event)"
+
                   (onToolbarPreparing)="onToolbarPreparing($event)">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
 
-      <dxo-editing mode="popup" [allowUpdating]="true" [allowAdding]="true">
-        <dxo-popup title="個案資訊" [showTitle]="true" [width]="700" [height]="400">
-
-        </dxo-popup>
+      <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+        <dxo-popup title="個案資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
+        <dxo-form [colCount]="1" [labelLocation]="'left'" formData=""  >
+          <dxi-item dataField="identifier[0].value"></dxi-item>
+          <dxi-item dataField="name[0].text"></dxi-item>
+          <dxi-item dataField="gender"></dxi-item>
+          <dxi-item dataField="birthDate"></dxi-item>
+          <dxi-item dataField="address[0].text"></dxi-item>
+          <dxi-item dataField="telecom[0].value"></dxi-item>
+          <dxi-item itemType="group" caption="聯絡人">
+            <dxi-item dataField="contactName"></dxi-item>
+            <dxi-item dataField="contactRelationship"></dxi-item>
+            <dxi-item dataField="contactRelationship"></dxi-item>
+          </dxi-item>
+        </dxo-form>
       </dxo-editing>
       <dxi-column dataField="identifier[0].value" caption="身份證字號" dataType="string"
                   [width]="150"
                   [setCellValue]="setIdentifier"></dxi-column>
-      <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="100"></dxi-column>
-      <dxi-column dataField="gender" caption="性別" dataType="string" [width]="50"></dxi-column>
-      <dxi-column dataField="birthDate" caption="出生日期" dataType="string" [width]="100"></dxi-column>
-      <dxi-column dataField="address.text" caption="聯絡地址" dataType="string"></dxi-column>
-      <dxi-column caption="聯絡電話" dataType="string" cellTemplate="telecomTemplate" [width]="100"></dxi-column>
-      <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"></dxi-column>
+      <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="100"
+                  [setCellValue]="setName"></dxi-column>
+      <dxi-column dataField="gender" caption="性別" dataType="object" [width]="50"
+                  [setCellValue]="setGender"></dxi-column>
+      <dxi-column dataField="birthDate" caption="出生日期" dataType="datetime" format="yyyy-MM-dd" [width]="100"
+                  [setCellValue]="setBirthDate"></dxi-column>
+      <dxi-column dataField="address[0].text" caption="聯絡地址" dataType="string"
+                  [setCellValue]="setAddress"></dxi-column>
+      <dxi-column dataField="telecom[0].value" caption="聯絡電話" dataType="string" cellTemplate="telecomTemplate" [width]="100"
+                  [setCellValue]="setTelecom"></dxi-column>
+      <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"
+                  [setCellValue]="setContact"></dxi-column>
 
       <div *dxTemplate="let row of 'telecomTemplate'">
         <div *ngFor="let item of row.data.telecom; let i = index">
