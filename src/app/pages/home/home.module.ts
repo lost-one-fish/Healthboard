@@ -4,12 +4,16 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { IndexComponent } from './index/index.component';
-import { DxTextBoxModule } from 'devextreme-angular';
+import { DxDataGridModule, DxLoadPanelModule, DxTextBoxModule } from 'devextreme-angular';
+import { ThemeModule } from '../../@theme/theme.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ThemeModule,
     DxTextBoxModule,
+    DxDataGridModule,
+    DxLoadPanelModule,
     HomeRoutingModule,
   ],
   declarations: [

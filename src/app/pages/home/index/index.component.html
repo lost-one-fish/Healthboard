@@ -28,3 +28,24 @@
     </div>
   </div>
 </div>
+<nb-card>
+  <nb-card-body>
+
+    <dx-data-grid id="gridContainer"
+                  [dataSource]="dataSource"
+                  [showRowLines]="true"
+                  [showColumnLines]="true"
+                  [showBorders]="true">
+
+      <dxo-paging [pageSize]="10"></dxo-paging>
+
+      <dxi-column dataField="code.coding[0].code" caption="編碼" dataType="string" [width]="150"></dxi-column>
+      <dxi-column dataField="effectiveDateTime" caption="測量日期時間" dataType="datetime" format="yyyy-MM-dd'T'hh:mm:ss" [width]="150"></dxi-column>
+      <dxi-column dataField="valueQuantity.value" caption="數值" dataType="string" [width]="150"></dxi-column>
+      <dxi-column dataField="valueQuantity.unit" caption="單位" dataType="string" [width]="150"></dxi-column>
+      <dxi-column dataField="subject.reference" caption="被執行處置者" dataType="string" [width]="150"></dxi-column>
+
+
+    </dx-data-grid>
+  </nb-card-body>
+</nb-card>

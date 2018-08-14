@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientRestService } from '../../../@fhir/patient-rest.service';
+import { ObservationRestService } from '../../../@fhir/observation-rest.service';
 import notify from '../../../../../node_modules/devextreme/ui/notify';
+import DataSource from '../../../../../node_modules/devextreme/data/data_source';
 
 @Component({
   selector: 'ngx-index',
@@ -9,13 +11,27 @@ import notify from '../../../../../node_modules/devextreme/ui/notify';
 })
 export class IndexComponent implements OnInit {
   patient;
+  dataSet = [];
+  loadingVisible = false;
+  dataSource: DataSource;
 
-  constructor(private patientRestService: PatientRestService) { }
+  constructor(private patientRestService: PatientRestService,
+              private observationRestService: ObservationRestService) {
+  }
 
   ngOnInit() {
     const patient = localStorage.getItem('myPatient');
     if (patient !== null) {
       this.patient = JSON.parse(patient);
+      this.loadingVisible = true;
+      this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
+        this.dataSet = this.dataSet.concat(next);
+      }, error => {
+        notify('調閱資料失敗');
+      }, () => {
+        this.loadingVisible = false;
+        this.dataSource = new DataSource(this.dataSet);
+      });
     }
   }
 
