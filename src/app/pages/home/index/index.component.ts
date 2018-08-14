@@ -34,4 +34,8 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  logout() {
+    localStorage.removeItem('myPatient');
+    this.patient = null;
+  }
 }

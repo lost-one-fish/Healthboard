@@ -14,7 +14,8 @@
       </dx-text-box>
     </div>
     <div class="col-md-2">
-      <button class="btn btn-info" (click)="findPatient(identifier.value)">搜尋</button>
+      <button class="btn btn-info" *ngIf="!patient" (click)="findPatient(identifier.value)">登入</button>
+      <button class="btn btn-info" *ngIf="patient" (click)="logout()">登出</button>
     </div>
   </div>
   <div class="row">
