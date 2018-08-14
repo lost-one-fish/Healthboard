@@ -4,7 +4,13 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { IndexComponent } from './index/index.component';
-import { DxDataGridModule, DxLoadPanelModule, DxTextBoxModule } from 'devextreme-angular';
+import {
+  DxDataGridModule,
+  DxLoadPanelModule,
+  DxPopupModule,
+  DxScrollViewModule,
+  DxTextBoxModule,
+} from 'devextreme-angular';
 import { ThemeModule } from '../../@theme/theme.module';
 
 @NgModule({
@@ -14,6 +20,8 @@ import { ThemeModule } from '../../@theme/theme.module';
     DxTextBoxModule,
     DxDataGridModule,
     DxLoadPanelModule,
+    DxScrollViewModule,
+    DxPopupModule,
     HomeRoutingModule,
   ],
   declarations: [
@@ -21,4 +29,5 @@ import { ThemeModule } from '../../@theme/theme.module';
     IndexComponent,
   ],
 })
-export class HomeModule { }
+export class HomeModule {
+}

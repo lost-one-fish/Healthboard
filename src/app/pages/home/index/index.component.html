@@ -14,7 +14,8 @@
       </dx-text-box>
     </div>
     <div class="col-md-2">
-      <button class="btn btn-info" *ngIf="!patient" (click)="findPatient(identifier.value)">登入</button>
+      <button class="btn btn-info" *ngIf="!patient" (click)="findPatient(identifier.value)">登入
+      </button>
       <button class="btn btn-info" *ngIf="patient" (click)="logout()">登出</button>
     </div>
   </div>
@@ -23,8 +24,8 @@
       <div class="dx-field-label mat-h2"> 姓名</div>
     </div>
     <div class="col-md-8 text-left">
-      <div class="mat-h2" *ngIf="patient"> {{patient?.name[0]?.text}} </div>
-      <div class="mat-h2" *ngIf="!patient"> 沒有查詢到任何病人 </div>
+      <div class="mat-h2" *ngIf="patient"> {{patient?.name[0]?.text}}</div>
+      <div class="mat-h2" *ngIf="!patient"> 沒有查詢到任何病人</div>
     </div>
   </div>
 </div>
@@ -42,12 +43,33 @@
       <dxo-group-panel [visible]="true"></dxo-group-panel>
       <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
-      <dxi-column [groupIndex]="0" dataField="code.coding[0].code" caption="編碼" dataType="string"></dxi-column>
-      <dxi-column dataField="effectiveDateTime" caption="測量日期時間" dataType="datetime" format="yyyy-MM-dd'T'hh:mm:ss"></dxi-column>
+      <dxi-column [groupIndex]="0" dataField="code.coding[0].code" caption="編碼"
+                  dataType="string"></dxi-column>
+      <dxi-column dataField="effectiveDateTime" caption="測量日期時間" dataType="datetime"
+                  format="yyyy-MM-dd'T'hh:mm:ss"></dxi-column>
       <dxi-column dataField="valueQuantity.value" caption="數值" dataType="string"></dxi-column>
       <dxi-column dataField="valueQuantity.unit" caption="單位" dataType="string"></dxi-column>
       <dxi-column dataField="subject.reference" caption="被執行處置者" dataType="string"></dxi-column>
-
+      <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
+      <div *dxTemplate="let row of 'rawDataTemplate'">
+        <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
+      </div>
     </dx-data-grid>
+
+    <dx-popup
+      class="popup"
+      [width]="600"
+      [height]="600"
+      [showTitle]="true"
+      title="Observation Resource"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupVisible">
+      <div *dxTemplate="let item of 'content'">
+        <dx-scroll-view >
+          <pre class="mat-h3">{{data | json}}</pre>
+        </dx-scroll-view>
+      </div>
+    </dx-popup>
   </nb-card-body>
 </nb-card>

@@ -15,6 +15,10 @@ export class IndexComponent implements OnInit {
   loadingVisible = false;
   dataSource: DataSource;
 
+  data;
+  popupVisible = false;
+
+
   constructor(private patientRestService: PatientRestService,
               private observationRestService: ObservationRestService) {
   }
@@ -26,6 +30,12 @@ export class IndexComponent implements OnInit {
       this.loadingVisible = true;
       this.fetchData();
     }
+  }
+
+  onRawData(data) {
+    this.data = data;
+    this.popupVisible = true;
+    console.info(this.data);
   }
 
   findPatient(identifier) {
