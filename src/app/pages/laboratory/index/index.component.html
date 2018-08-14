@@ -2,6 +2,15 @@
   <nb-card-body>
     <div class="container">
       <div class="row">
+        <div class="col-md-4">
+          <div class="dx-field-label mat-h2"> 姓名</div>
+        </div>
+        <div class="col-md-8 text-left">
+          <div class="mat-h2" *ngIf="patient"> {{patient?.name[0]?.text}}</div>
+          <div class="mat-h2" *ngIf="!patient"> 沒有查詢到任何病人</div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-3">
           <ngb-tabset type="pills" [orientation]="'vertical'"
                       (tabChange)="onSelectClassification($event.nextId)">
