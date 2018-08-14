@@ -24,14 +24,7 @@ export class IndexComponent implements OnInit {
     if (patient !== null) {
       this.patient = JSON.parse(patient);
       this.loadingVisible = true;
-      this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
-        this.dataSet = this.dataSet.concat(next);
-      }, error => {
-        notify('調閱資料失敗');
-      }, () => {
-        this.loadingVisible = false;
-        this.dataSource = new DataSource(this.dataSet);
-      });
+      this.fetchData();
     }
   }
 
@@ -47,11 +40,25 @@ export class IndexComponent implements OnInit {
     }, error => {
       notify('查詢失敗');
     }, () => {
+      this.fetchData();
     });
   }
 
   logout() {
     localStorage.removeItem('myPatient');
     this.patient = null;
+    this.dataSource = null;
+    this.dataSet = [];
+  }
+
+  fetchData() {
+    this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
+      this.dataSet = this.dataSet.concat(next);
+    }, error => {
+      notify('調閱資料失敗');
+    }, () => {
+      this.loadingVisible = false;
+      this.dataSource = new DataSource(this.dataSet);
+    });
   }
 }
