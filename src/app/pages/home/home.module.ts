@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { IndexComponent } from './index/index.component';
-import { DxButtonModule } from 'devextreme-angular';
+import { DxTextBoxModule } from 'devextreme-angular';
 
 @NgModule({
   imports: [
     CommonModule,
-    DxButtonModule,
+    DxTextBoxModule,
     HomeRoutingModule,
   ],
   declarations: [

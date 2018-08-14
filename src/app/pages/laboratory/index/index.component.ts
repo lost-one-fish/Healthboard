@@ -71,8 +71,7 @@ export class IndexComponent implements OnInit {
   selectedClassification = this.classifications[0];
   patient;
 
-  constructor(private observationRestService: ObservationRestService,
-              private patientRestService: PatientRestService) {
+  constructor(private observationRestService: ObservationRestService) {
   }
 
   ngOnInit() {
@@ -92,20 +91,6 @@ export class IndexComponent implements OnInit {
       resource: resource,
     }).subscribe(next => {
       notify('新增成功');
-    });
-  }
-
-  findPatient(identifier) {
-    console.info(identifier);
-    this.patient = null;
-    this.patientRestService.fetchAll({
-      'identifier': identifier,
-    }).subscribe(next => {
-      console.info(next);
-      this.patient = next[0];
-    }, error => {
-      notify('查詢失敗');
-    }, () => {
     });
   }
 }

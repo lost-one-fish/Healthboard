@@ -1,2 +1,29 @@
-<dx-button text="Press me">
-</dx-button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dx-field-label mat-h2">身份證字號</div>
+    </div>
+    <div class="col-md-6 text-left">
+      <dx-text-box
+        class="mat-h2"
+        value="A123456789"
+        #identifier
+        [showClearButton]="true"
+        valueChangeEvent="blur"
+        (onValueChanged)="findPatient($event.value)">
+      </dx-text-box>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-info" (click)="findPatient(identifier.value)">搜尋</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="dx-field-label mat-h2"> 姓名</div>
+    </div>
+    <div class="col-md-8 text-left">
+      <div class="mat-h2" *ngIf="patient"> {{patient?.name[0]?.text}} </div>
+      <div class="mat-h2" *ngIf="!patient"> 沒有查詢到任何病人 </div>
+    </div>
+  </div>
+</div>
