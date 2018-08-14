@@ -13,6 +13,10 @@ export class IndexComponent implements OnInit {
   constructor(private patientRestService: PatientRestService) { }
 
   ngOnInit() {
+    const patient = localStorage.getItem('myPatient');
+    if (patient !== null) {
+      this.patient = JSON.parse(patient);
+    }
   }
 
   findPatient(identifier) {
@@ -23,6 +27,7 @@ export class IndexComponent implements OnInit {
     }).subscribe(next => {
       console.info(next);
       this.patient = next[0];
+      localStorage.setItem('myPatient', JSON.stringify(this.patient));
     }, error => {
       notify('查詢失敗');
     }, () => {

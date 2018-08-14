@@ -75,6 +75,10 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
+    const patient = localStorage.getItem('myPatient');
+    if (patient !== null) {
+      this.patient = JSON.parse(patient);
+    }
   }
 
   onSelectClassification(selected) {
