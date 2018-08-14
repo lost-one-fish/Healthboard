@@ -38,8 +38,11 @@
                   [showBorders]="true">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-search-panel [visible]="true"></dxo-search-panel>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
 
-      <dxi-column dataField="code.coding[0].code" caption="編碼" dataType="string" [width]="150"></dxi-column>
+      <dxi-column [groupIndex]="0" dataField="code.coding[0].code" caption="編碼" dataType="string" [width]="150"></dxi-column>
       <dxi-column dataField="effectiveDateTime" caption="測量日期時間" dataType="datetime" format="yyyy-MM-dd'T'hh:mm:ss" [width]="150"></dxi-column>
       <dxi-column dataField="valueQuantity.value" caption="數值" dataType="string" [width]="150"></dxi-column>
       <dxi-column dataField="valueQuantity.unit" caption="單位" dataType="string" [width]="150"></dxi-column>
