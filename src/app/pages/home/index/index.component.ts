@@ -10,7 +10,7 @@ import DataSource from '../../../../../node_modules/devextreme/data/data_source'
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  identifierValue = 'A1----2--3';
+  identifierValue = 'Z546665966';
   patient;
   dataSet = [];
   loadingVisible = false;
