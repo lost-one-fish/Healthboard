@@ -25,7 +25,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     const patient = localStorage.getItem('myPatient');
-    if (patient !== null) {
+    if (patient !== null && patient !== undefined && patient !== 'undefined') {
       this.patient = JSON.parse(patient);
       this.loadingVisible = true;
       this.fetchData();
@@ -62,6 +62,10 @@ export class IndexComponent implements OnInit {
   }
 
   fetchData() {
+    if (this.patient == null) {
+      return;
+    }
+
     this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
       this.dataSet = this.dataSet.concat(next);
     }, error => {
