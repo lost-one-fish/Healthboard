@@ -36,9 +36,9 @@
       </dxo-editing>
       <dxi-column dataField="identifier[0].value" caption="身份證字號" dataType="string"
                   [width]="100" [setCellValue]="setIdentifier"></dxi-column>
-      <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="100"
+      <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="70"
                   [setCellValue]="setName"></dxi-column>
-      <dxi-column dataField="gender" caption="性別" dataType="object" [width]="80"
+      <dxi-column dataField="gender" caption="性別" dataType="object" [width]="60"
                   [setCellValue]="setGender"></dxi-column>
       <dxi-column dataField="birthDate" caption="出生日期" dataType="datetime" format="yyyy-MM-dd" [width]="100"
                   [setCellValue]="setBirthDate"></dxi-column>
@@ -48,9 +48,9 @@
                   [setCellValue]="setTelecom"></dxi-column>
       <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"
                   [setCellValue]="setContact"></dxi-column>
-      <dxi-column caption="檢驗值" dataType="string" cellTemplate="labTemplate" [width]="130"></dxi-column>
-      <dxi-column caption="歷史" dataType="string" cellTemplate="historyTemplate" [width]="120"></dxi-column>
-      <dxi-column caption="原始資料" dataType="string" cellTemplate="rawDataTemplate" [width]="120"></dxi-column>
+      <dxi-column caption="檢驗值" dataType="string" cellTemplate="labTemplate" [width]="70"></dxi-column>
+      <dxi-column caption="歷史" dataType="string" cellTemplate="historyTemplate" [width]="70"></dxi-column>
+      <dxi-column caption="原始資料" dataType="string" cellTemplate="rawDataTemplate" [width]="70"></dxi-column>
 
       <div *dxTemplate="let row of 'telecomTemplate'">
         <div *ngFor="let item of row.data.telecom; let i = index">
@@ -68,20 +68,20 @@
         </div>
       </div>
       <div *dxTemplate="let row of 'labTemplate'">
-        <button class="btn btn-warning" >檢驗值資料</button>
+        <button class="btn btn-xs btn-info" >驗</button>
       </div>
       <div *dxTemplate="let row of 'historyTemplate'">
-        <button class="btn btn-warning" >歷史資料</button>
+        <button class="btn btn-xs btn-success" >歷</button>
       </div>
       <div *dxTemplate="let row of 'rawDataTemplate'">
-        <button class="btn btn-sm btn-dark" (click)="onRawData(row.data)">原始資料</button>
+        <button class="btn btn-xs btn-dark" (click)="onRawData(row.data)">原</button>
       </div>
     </dx-data-grid>
 
     <dx-popup
       class="popup"
-      [width]="600"
-      [height]="600"
+      [width]="800"
+      [height]="700"
       [showTitle]="true"
       title="Patient Resource"
       [dragEnabled]="false"
