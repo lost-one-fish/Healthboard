@@ -44,7 +44,7 @@ export class RavenErrorHandler implements ErrorHandler {
     AppRoutingModule,
 
     FhirModule.forRoot({
-      serviceUrl: 'https://sandbox.pickonefish.org/baseDstu3',
+      serviceUrl: 'http://211.20.120.55:8034/baseDstu3',
       auth: {
         type: 'none',
       },
