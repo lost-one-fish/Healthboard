@@ -10,6 +10,7 @@ import DataSource from '../../../../../node_modules/devextreme/data/data_source'
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
+  identifierValue = 'A1----2--3';
   patient;
   dataSet = [];
   loadingVisible = false;
@@ -27,6 +28,7 @@ export class IndexComponent implements OnInit {
     const patient = localStorage.getItem('myPatient');
     if (patient !== null && patient !== undefined && patient !== 'undefined') {
       this.patient = JSON.parse(patient);
+      this.identifierValue = this.patient.identifier[0].value;
       this.loadingVisible = true;
       this.fetchData();
     }
@@ -46,6 +48,7 @@ export class IndexComponent implements OnInit {
     }).subscribe(next => {
       console.info(next);
       this.patient = next[0];
+      this.identifierValue = this.patient.identifier[0].value;
       localStorage.setItem('myPatient', JSON.stringify(this.patient));
     }, error => {
       notify('查詢失敗');
@@ -57,6 +60,7 @@ export class IndexComponent implements OnInit {
   logout() {
     localStorage.removeItem('myPatient');
     this.patient = null;
+    this.identifierValue = null;
     this.dataSource = null;
     this.dataSet = [];
   }
