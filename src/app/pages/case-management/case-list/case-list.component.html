@@ -49,6 +49,8 @@
                   [setCellValue]="setTelecom"></dxi-column>
       <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"
                   [setCellValue]="setContact"></dxi-column>
+      <dxi-column caption="檢驗值" dataType="string" cellTemplate="labTemplate"></dxi-column>
+      <dxi-column caption="歷史" dataType="string" cellTemplate="historyTemplate"></dxi-column>
 
       <div *dxTemplate="let row of 'telecomTemplate'">
         <div *ngFor="let item of row.data.telecom; let i = index">
@@ -64,6 +66,12 @@
             <div *ngIf="item.system === 'email'"> 電子郵件：{{item.value}} </div>
           </div>
         </div>
+      </div>
+      <div *dxTemplate="let row of 'labTemplate'">
+        <button class="btn btn-warning" >檢驗值資料</button>
+      </div>
+      <div *dxTemplate="let row of 'historyTemplate'">
+        <button class="btn btn-warning" >歷史資料</button>
       </div>
     </dx-data-grid>
   </nb-card-body>
