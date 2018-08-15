@@ -25,6 +25,9 @@ export class CaseListComponent implements OnInit, OnChanges {
 
   dataSource: DataSource;
 
+  data;
+  popupVisible = false;
+
   constructor() {
   }
 
@@ -117,6 +120,12 @@ export class CaseListComponent implements OnInit, OnChanges {
 
   refreshDataGrid() {
     this.refresh.emit({});
+  }
+
+  onRawData(data) {
+    this.data = data;
+    this.popupVisible = true;
+    console.info(this.data);
   }
 
 }

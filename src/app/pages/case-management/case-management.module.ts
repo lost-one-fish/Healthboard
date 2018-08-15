@@ -7,7 +7,12 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CaseListComponent } from './case-list/case-list.component';
 import { CaseFormComponent } from './case-form/case-form.component';
 import { MatIconModule } from '@angular/material';
-import { DxDataGridModule, DxLoadPanelModule } from 'devextreme-angular';
+import {
+  DxDataGridModule,
+  DxLoadPanelModule,
+  DxPopupModule,
+  DxScrollViewModule
+} from 'devextreme-angular';
 import { IndexComponent } from './index/index.component';
 
 const components = [
@@ -24,6 +29,8 @@ const components = [
     CaseManagementRoutingModule,
     MatIconModule,
     DxDataGridModule,
+    DxScrollViewModule,
+    DxPopupModule,
     DxLoadPanelModule,
   ],
   declarations: [
