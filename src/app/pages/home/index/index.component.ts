@@ -65,6 +65,7 @@ export class IndexComponent implements OnInit {
     if (this.patient == null) {
       return;
     }
+    this.dataSet = [];
 
     this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
       this.dataSet = this.dataSet.concat(next);
