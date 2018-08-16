@@ -4,7 +4,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Home',
     icon: 'nb-home',
-    link: '/pages/home',
+    link: '/pages/home/index',
     home: true,
     data: {
       permission: 'view',

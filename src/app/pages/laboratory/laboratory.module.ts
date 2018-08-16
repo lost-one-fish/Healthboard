@@ -8,6 +8,7 @@ import { LabFormComponent } from './lab-form/lab-form.component';
 import { LabListComponent } from './lab-list/lab-list.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import {
+  DxDataGridModule,
   DxDateBoxModule,
   DxNumberBoxModule,
   DxTextBoxModule,
@@ -29,9 +30,11 @@ const components = [
     DxNumberBoxModule,
     DxDateBoxModule,
     DxToolbarModule,
+    DxDataGridModule,
     LaboratoryRoutingModule,
   ],
   declarations: [...components],
+  exports: [LabListComponent],
 })
 export class LaboratoryModule {
 }

@@ -12,6 +12,7 @@ import {
   DxTextBoxModule,
 } from 'devextreme-angular';
 import { ThemeModule } from '../../@theme/theme.module';
+import { LaboratoryModule } from '../laboratory/laboratory.module';
 
 @NgModule({
   imports: [
@@ -22,10 +23,14 @@ import { ThemeModule } from '../../@theme/theme.module';
     DxLoadPanelModule,
     DxScrollViewModule,
     DxPopupModule,
+    LaboratoryModule,
     HomeRoutingModule,
   ],
   declarations: [
     HomeComponent,
+    IndexComponent,
+  ],
+  bootstrap: [
     IndexComponent,
   ],
 })
