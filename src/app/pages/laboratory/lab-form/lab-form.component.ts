@@ -42,14 +42,6 @@ export class LabFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['subject'] && changes['subject'].currentValue) {
-      this.data = Object.assign(this.data, {
-        subject: {
-          reference: 'Patient/' + changes['subject'].currentValue.id,
-        },
-      });
-      return;
-    }
 
     if (!changes['classification']) {
       return;
@@ -60,16 +52,6 @@ export class LabFormComponent implements OnInit, OnChanges {
 
     this.value = 0;
     this.now = new Date();
-
-    this.data = Object.assign(this.data, {
-      'code': {
-        'coding': [
-          {
-            'code': value['code'],
-          },
-        ],
-      },
-    });
 
     this.items = [{
       location: 'before',
@@ -109,6 +91,25 @@ export class LabFormComponent implements OnInit, OnChanges {
         },
       },
     }];
+
+    if (changes['subject'] && changes['subject'].currentValue) {
+      this.data = Object.assign(this.data, {
+        subject: {
+          reference: 'Patient/' + changes['subject'].currentValue.id,
+        },
+      });
+      return;
+    }
+
+    this.data = Object.assign(this.data, {
+      'code': {
+        'coding': [
+          {
+            'code': value['code'],
+          },
+        ],
+      },
+    });
   }
 
   onUpdate(event) {
