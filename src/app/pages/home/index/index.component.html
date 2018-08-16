@@ -31,7 +31,7 @@
 <nb-card>
   <nb-card-body>
 
-    <ngx-observation-list [dataSet]="dataSet"></ngx-observation-list>
+    <ngx-observation-list [dataSet]="dataSet" (rawdata)="onRawData($event)"></ngx-observation-list>
     <dx-popup
       class="popup"
       [width]="600"

@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import DataSource from '../../../../../node_modules/devextreme/data/data_source';
 
 @Component({
@@ -10,6 +18,9 @@ export class ObservationListComponent implements OnInit, OnChanges {
 
   @Input()
   dataSet = [];
+
+  @Output()
+  rawdata = new EventEmitter();
 
   dataSource: DataSource;
 
@@ -25,5 +36,9 @@ export class ObservationListComponent implements OnInit, OnChanges {
     if (changes['dataSet']) {
       this.dataSource = new DataSource(changes['dataSet'].currentValue);
     }
+  }
+
+  onRawData(data) {
+    this.rawdata.emit(data);
   }
 }
