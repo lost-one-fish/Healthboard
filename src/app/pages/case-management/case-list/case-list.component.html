@@ -68,10 +68,14 @@
         </div>
       </div>
       <div *dxTemplate="let row of 'labTemplate'">
-        <button class="btn btn-xs btn-info" >驗</button>
+        <a [routerLink]="['/pages/laboratory/index', row.data.id]">
+          <button class="btn btn-xs btn-info" >驗</button>
+        </a>
       </div>
       <div *dxTemplate="let row of 'historyTemplate'">
-        <button class="btn btn-xs btn-success" >歷</button>
+        <a [routerLink]="['/pages/history/index', row.data.id]">
+          <button class="btn btn-xs btn-success" >歷</button>
+        </a>
       </div>
       <div *dxTemplate="let row of 'rawDataTemplate'">
         <button class="btn btn-xs btn-dark" (click)="onRawData(row.data)">原</button>
