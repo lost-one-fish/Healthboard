@@ -98,7 +98,6 @@ export class LabFormComponent implements OnInit, OnChanges {
           reference: 'Patient/' + changes['subject'].currentValue.id,
         },
       });
-      return;
     }
 
     this.data = Object.assign(this.data, {
@@ -106,6 +105,7 @@ export class LabFormComponent implements OnInit, OnChanges {
         'coding': [
           {
             'code': value['code'],
+            'display': value['class'],
           },
         ],
       },
