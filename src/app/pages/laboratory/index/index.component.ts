@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ObservationRestService } from '../../../@fhir/observation-rest.service';
+import { PatientRestService } from '../../../@fhir/patient-rest.service';
 import notify from '../../../../../node_modules/devextreme/ui/notify';
 import DataSource from '../../../../../node_modules/devextreme/data/data_source';
 
@@ -79,7 +80,9 @@ export class IndexComponent implements OnInit {
   selectedClassification = this.classifications[0];
   patient;
 
-  constructor(private observationRestService: ObservationRestService, private route: ActivatedRoute) {
+  constructor(private observationRestService: ObservationRestService,
+              private patientRestService: PatientRestService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -88,16 +91,14 @@ export class IndexComponent implements OnInit {
       const patient = localStorage.getItem('myPatient');
       if (patient !== null) {
         this.patient = JSON.parse(patient);
+        this.fetchData();
       }
     } else {
-      // TODO: this.patient = from fhir server
-      // TODO: get Observations from the patient
+      this.patientRestService.read(patientId).subscribe(next => {
+        this.patient = next.data;
+        this.fetchData();
+      });
     }
-
-    if ( this.patient !== null) {
-      this.fetchData();
-    }
-
   }
 
   onSelectClassification(selected) {
