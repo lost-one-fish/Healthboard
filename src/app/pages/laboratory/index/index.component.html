@@ -11,6 +11,13 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-md-12">
+          <ngx-observation-list ></ngx-observation-list>
+          <br/>
+          <hr/>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-3">
           <ngb-tabset type="pills" [orientation]="'vertical'"
                       (tabChange)="onSelectClassification($event.nextId)">
@@ -22,7 +29,8 @@
           </ngb-tabset>
         </div>
         <div class="col-md-9">
-          <ngx-lab-form [classification]="selectedClassification" [subject]="patient" (resource)="onSave($event)"></ngx-lab-form>
+          <ngx-lab-form [classification]="selectedClassification" [subject]="patient"
+                        (resource)="onSave($event)"></ngx-lab-form>
         </div>
       </div>
     </div>

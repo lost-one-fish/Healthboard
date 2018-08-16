@@ -14,6 +14,7 @@ import {
   DxTextBoxModule,
   DxToolbarModule,
 } from 'devextreme-angular';
+import { ObservationModule } from '../observation/observation.module';
 
 const components = [
   LaboratoryComponent,
@@ -31,6 +32,7 @@ const components = [
     DxDateBoxModule,
     DxToolbarModule,
     DxDataGridModule,
+    ObservationModule,
     LaboratoryRoutingModule,
   ],
   declarations: [...components],
