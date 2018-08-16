@@ -15,6 +15,9 @@ export class IndexComponent implements OnInit {
   loadingVisible = false;
   dataSource: DataSource;
 
+  data;
+  popupVisible = false;
+
   classifications = [{
     class: '身高',
     unit: '公分',
@@ -146,5 +149,10 @@ export class IndexComponent implements OnInit {
       this.loadingVisible = false;
       this.dataSource = new DataSource(this.dataSet);
     });
+  }
+
+  onRawData(data) {
+    this.data = data;
+    this.popupVisible = true;
   }
 }

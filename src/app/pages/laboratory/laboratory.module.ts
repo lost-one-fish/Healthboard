@@ -11,6 +11,8 @@ import {
   DxDataGridModule,
   DxDateBoxModule,
   DxNumberBoxModule,
+  DxPopupModule,
+  DxScrollViewModule,
   DxTextBoxModule,
   DxToolbarModule,
 } from 'devextreme-angular';
@@ -32,6 +34,8 @@ const components = [
     DxDateBoxModule,
     DxToolbarModule,
     DxDataGridModule,
+    DxScrollViewModule,
+    DxPopupModule,
     ObservationModule,
     LaboratoryRoutingModule,
   ],
