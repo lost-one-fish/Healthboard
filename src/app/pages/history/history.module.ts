@@ -12,8 +12,8 @@ import { DxSchedulerModule } from 'devextreme-angular/ui/scheduler';
   imports: [
     CommonModule,
     DxSchedulerModule,
-    HistoryRoutingModule
+    HistoryRoutingModule,
   ],
-  declarations: [HistoryComponent, IndexComponent, ConditionListComponent, ProcedureListComponent]
+  declarations: [HistoryComponent, IndexComponent, ConditionListComponent, ProcedureListComponent],
 })
 export class HistoryModule { }

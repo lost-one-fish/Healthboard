@@ -11,7 +11,7 @@ import {
   DxDataGridModule,
   DxLoadPanelModule,
   DxPopupModule,
-  DxScrollViewModule
+  DxScrollViewModule,
 } from 'devextreme-angular';
 import { IndexComponent } from './index/index.component';
 
