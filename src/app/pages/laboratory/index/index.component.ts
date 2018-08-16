@@ -20,11 +20,11 @@ export class IndexComponent implements OnInit {
 
   classifications = [{
     class: '身高',
-    unit: '公分',
+    unit: 'cm',
     code: '3137-7',
   }, {
     class: '體重',
-    unit: '公斤',
+    unit: 'kg',
     code: '3141-9',
   }, {
     class: 'BMI',
@@ -36,7 +36,7 @@ export class IndexComponent implements OnInit {
     code: '8310-5',
   }, {
     class: '脈搏/心跳',
-    unit: '次/分',
+    unit: 'BPM',
     code: '8867-4',
   }, {
     class: '血氧',
