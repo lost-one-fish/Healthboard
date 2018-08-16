@@ -111,6 +111,24 @@ export class IndexComponent implements OnInit {
       resource: resource,
     }).subscribe(next => {
       notify('新增成功');
+
+      let created: boolean = true;
+      this.dataSet = this.dataSet.map(item => {
+        if (item.id === resource.id) {
+          created = false;
+          return Object.assign({}, item, resource);
+        } else {
+          return item;
+        }
+      });
+      if (created) {
+        this.dataSet.reverse();
+        this.dataSet.push(next.data);
+        this.dataSet.reverse();
+      }
+
+      this.dataSource = new DataSource(this.dataSet);
+
     });
   }
 
