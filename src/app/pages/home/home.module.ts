@@ -12,7 +12,7 @@ import {
   DxTextBoxModule,
 } from 'devextreme-angular';
 import { ThemeModule } from '../../@theme/theme.module';
-import { LaboratoryModule } from '../laboratory/laboratory.module';
+import { ObservationModule } from '../observation/observation.module';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { LaboratoryModule } from '../laboratory/laboratory.module';
     DxLoadPanelModule,
     DxScrollViewModule,
     DxPopupModule,
-    LaboratoryModule,
+    ObservationModule,
     HomeRoutingModule,
   ],
   declarations: [

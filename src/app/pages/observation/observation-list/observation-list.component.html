@@ -1,0 +1,25 @@
+
+
+<dx-data-grid id="gridContainer"
+              [dataSource]="dataSource"
+              [showRowLines]="true"
+              [showColumnLines]="true"
+              [showBorders]="true">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-search-panel [visible]="true"></dxo-search-panel>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+
+  <dxi-column [groupIndex]="0" dataField="code.coding[0].code" caption="編碼"
+              dataType="string"></dxi-column>
+  <dxi-column dataField="effectiveDateTime" caption="測量日期時間" dataType="datetime"
+              format="yyyy-MM-dd'T'hh:mm:ss"></dxi-column>
+  <dxi-column dataField="valueQuantity.value" caption="數值" dataType="string"></dxi-column>
+  <dxi-column dataField="valueQuantity.unit" caption="單位" dataType="string"></dxi-column>
+  <dxi-column dataField="subject.reference" caption="被執行處置者" dataType="string"></dxi-column>
+  <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
+  <div *dxTemplate="let row of 'rawDataTemplate'">
+    <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
+  </div>
+</dx-data-grid>
