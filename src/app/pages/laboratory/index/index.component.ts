@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ObservationRestService } from '../../../@fhir/observation-rest.service';
 import notify from '../../../../../node_modules/devextreme/ui/notify';
+import DataSource from '../../../../../node_modules/devextreme/data/data_source';
 
 @Component({
   selector: 'ngx-index',
@@ -9,6 +10,10 @@ import notify from '../../../../../node_modules/devextreme/ui/notify';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
+
+  dataSet = [];
+  loadingVisible = false;
+  dataSource: DataSource;
 
   classifications = [{
     class: '身高',
@@ -85,6 +90,11 @@ export class IndexComponent implements OnInit {
       // TODO: this.patient = from fhir server
       // TODO: get Observations from the patient
     }
+
+    if ( this.patient !== null) {
+      this.fetchData();
+    }
+
   }
 
   onSelectClassification(selected) {
@@ -101,6 +111,22 @@ export class IndexComponent implements OnInit {
       resource: resource,
     }).subscribe(next => {
       notify('新增成功');
+    });
+  }
+
+  fetchData() {
+    if (this.patient == null) {
+      return;
+    }
+    this.dataSet = [];
+
+    this.observationRestService.fetchAll({}, this.patient.id).subscribe(next => {
+      this.dataSet = this.dataSet.concat(next);
+    }, error => {
+      notify('調閱資料失敗');
+    }, () => {
+      this.loadingVisible = false;
+      this.dataSource = new DataSource(this.dataSet);
     });
   }
 }
