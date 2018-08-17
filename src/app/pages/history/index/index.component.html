@@ -19,7 +19,11 @@
           ></ngx-condition-list>
           <br />
           <br />
-          <ngx-procedure-list [dataSet]="procedures" ></ngx-procedure-list>
+          <ngx-procedure-list [dataSet]="procedures"
+                              (create)="onCreateProcedure($event)"
+                              (update)="onUpdateProcedure($event)"
+                              (delete)="onDeleteProcedure($event)"
+          ></ngx-procedure-list>
 
           <br/>
           <hr/>

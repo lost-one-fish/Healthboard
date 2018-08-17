@@ -109,6 +109,63 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  onCreateProcedure(resource) {
+    if (!resource.subject || !resource.subject.reference) {
+      resource.subject = {
+        reference: 'Patient/' + this.patient.id,
+      }
+    }
+    this.procedureRestService.create({
+      resource: resource,
+    }).subscribe(next => {
+      notify('新增成功');
+
+      let created: boolean = true;
+      this.conditions = this.conditions.map(item => {
+        if (item.id === resource.id) {
+          created = false;
+          return Object.assign({}, item, resource);
+        } else {
+          return item;
+        }
+      });
+      if (created) {
+        this.conditions.reverse();
+        this.conditions.push(next.data);
+        this.conditions.reverse();
+      }
+    });
+  }
+
+  onUpdateProcedure(resource) {
+    if (!resource.subject || !resource.subject.reference) {
+      resource.subject = {
+        reference: 'Patient/' + this.patient.id,
+      }
+    }
+    this.procedureRestService.update({
+      resource: resource,
+    }).subscribe(next => {
+      notify('更新成功');
+
+      this.conditions = this.conditions.map(item => {
+        if (item.id === resource.id) {
+          return Object.assign({}, item, resource);
+        } else {
+          return item;
+        }
+      });
+    });
+  }
+
+  onDeleteProcedure(resource) {
+    this.procedureRestService.delete({
+      resource: resource,
+    }).subscribe(next => {
+      notify('刪除成功');
+    });
+  }
+
   fetchData(patient) {
     if (patient == null) {
       return;
