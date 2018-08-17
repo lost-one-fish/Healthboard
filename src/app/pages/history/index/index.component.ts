@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ConditionRestService } from '../../../@fhir/condition-rest.service';
 import { ProcedureRestService } from '../../../@fhir/procedure-rest.service';
 import { PatientRestService } from '../../../@fhir/patient-rest.service';
+import notify from '../../../../../node_modules/devextreme/ui/notify';
 
 @Component({
   selector: 'ngx-index',
@@ -49,6 +50,34 @@ export class IndexComponent implements OnInit {
         this.fetchData(this.patient);
       });
     }
+  }
+
+  onCreateCondition(resource) {
+    if (!resource.subject || !resource.subject.reference) {
+      resource.subject = {
+        reference: 'Patient/' + this.patient.id,
+      }
+    }
+    this.conditionRestService.create({
+      resource: resource,
+    }).subscribe(next => {
+      notify('新增成功');
+
+      let created: boolean = true;
+      this.conditions = this.conditions.map(item => {
+        if (item.id === resource.id) {
+          created = false;
+          return Object.assign({}, item, resource);
+        } else {
+          return item;
+        }
+      });
+      if (created) {
+        this.conditions.reverse();
+        this.conditions.push(next.data);
+        this.conditions.reverse();
+      }
+    });
   }
 
   fetchData(patient) {

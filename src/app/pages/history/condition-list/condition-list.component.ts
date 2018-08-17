@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import DataSource from '../../../../../node_modules/devextreme/data/data_source';
 
 @Component({
@@ -10,6 +18,9 @@ export class ConditionListComponent implements OnInit, OnChanges {
 
   @Input()
   dataSet = [];
+
+  @Output()
+  create = new EventEmitter();
 
   dataSource: DataSource;
 
@@ -37,6 +48,8 @@ export class ConditionListComponent implements OnInit, OnChanges {
       'resourceType': 'Condition',
     };
     condition['code'] = e.data.code;
+
+    this.create.emit(condition);
   }
 
   onRowInserted(e) {
