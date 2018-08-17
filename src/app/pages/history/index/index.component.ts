@@ -40,15 +40,19 @@ export class IndexComponent implements OnInit {
       const patient = localStorage.getItem('myPatient');
       if (patient !== null) {
         this.patient = JSON.parse(patient);
+        this.fetchData(this.patient);
       }
     } else {
       this.patientRestService.read(patientId).subscribe(next => {
         this.patient = next.data;
+        this.fetchData(this.patient);
       });
     }
+  }
 
+  fetchData(patient) {
     this.loadingVisible = true;
-    this.conditionRestService.fetchAll().subscribe(next => {
+    this.conditionRestService.fetchAll({}, patient.id).subscribe(next => {
       next = next.map(entity => {
         if (entity['onsetPeriod']) {
           entity['start'] = entity['onsetPeriod']['start'];
@@ -64,7 +68,7 @@ export class IndexComponent implements OnInit {
     });
 
     this.loadingVisible = true;
-    this.procedureRestService.fetchAll().subscribe(next => {
+    this.procedureRestService.fetchAll({}, patient.id).subscribe(next => {
       next = next.map(entity => {
         if (entity['performedPeriod']) {
           entity['start'] = entity['performedPeriod']['start'];
