@@ -1,21 +1,49 @@
-<dx-scheduler
-  [dataSource]="dataSet"
-  [views]='["timelineDay", "timelineWeek", "timelineMonth"]'
-  currentView="timelineWeek"
-  startDateExpr="start"
-  endDateExpr="end"
-  textExpr="code.coding[0].display"
-  [firstDayOfWeek]="0"
-  [startDayHour]="0"
-  [endDayHour]="24"
-  [cellDuration]="60"
-  [groups]="['resourceType']"
-  [currentDate]="currentDate"
-  [height]="550">
-  <dxi-resource
-    fieldExpr="resourceType"
-    [allowMultiple]="false"
-    [dataSource]="resourceType"
-    label="History"
-  ></dxi-resource>
-</dx-scheduler>
+<nb-card>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="dx-field-label mat-h2"> 姓名</div>
+        </div>
+        <div class="col-md-8 text-left">
+          <!--<div class="mat-h2" *ngIf="patient"> {{patient?.name[0]?.text}}</div>-->
+          <div class="mat-h2" *ngIf="!patient"> 沒有查詢到任何病人</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <ngx-condition-list ></ngx-condition-list>
+          <ngx-procedure-list ></ngx-procedure-list>
+
+          <br/>
+          <hr/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <dx-scheduler
+            [dataSource]="dataSet"
+            [views]='["timelineDay", "timelineWeek", "timelineMonth"]'
+            currentView="timelineWeek"
+            startDateExpr="start"
+            endDateExpr="end"
+            textExpr="code.coding[0].display"
+            [firstDayOfWeek]="0"
+            [startDayHour]="0"
+            [endDayHour]="24"
+            [cellDuration]="60"
+            [groups]="['resourceType']"
+            [currentDate]="currentDate"
+            [height]="550">
+            <dxi-resource
+              fieldExpr="resourceType"
+              [allowMultiple]="false"
+              [dataSource]="resourceType"
+              label="History"
+            ></dxi-resource>
+          </dx-scheduler>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

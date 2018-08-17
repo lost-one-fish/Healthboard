@@ -7,10 +7,12 @@ import { IndexComponent } from './index/index.component';
 import { ConditionListComponent } from './condition-list/condition-list.component';
 import { ProcedureListComponent } from './procedure-list/procedure-list.component';
 import { DxSchedulerModule } from 'devextreme-angular/ui/scheduler';
+import { ThemeModule } from '../../@theme/theme.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ThemeModule,
     DxSchedulerModule,
     HistoryRoutingModule,
   ],
