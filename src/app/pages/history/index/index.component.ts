@@ -101,6 +101,14 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  onDeleteCondition(resource) {
+    this.conditionRestService.delete({
+      resource: resource,
+    }).subscribe(next => {
+      notify('刪除成功');
+    });
+  }
+
   fetchData(patient) {
     if (patient == null) {
       return;
