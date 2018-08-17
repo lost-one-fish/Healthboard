@@ -32,4 +32,26 @@ export class ConditionListComponent implements OnInit, OnChanges {
     };
   }
 
+  onRowInserting(e) {
+    const condition = {
+      'resourceType': 'Condition',
+    };
+    condition['code'] = e.data.code;
+  }
+
+  onRowInserted(e) {
+  }
+
+  onRowUpdating(e) {
+  }
+
+  onRowUpdated(e) {
+  }
+
+  onRowRemoving(e) {
+  }
+
+  onRowRemoved(e) {
+  }
+
 }
