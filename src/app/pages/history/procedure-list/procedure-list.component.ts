@@ -85,7 +85,7 @@ export class ProcedureListComponent implements OnInit, OnChanges {
   }
 
   onRowInserting(e) {
-    e.data.resourceType = 'resourceType';
+    e.data.resourceType = 'Procedure';
     this.create.emit(e.data);
   }
 
