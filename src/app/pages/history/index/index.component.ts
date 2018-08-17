@@ -10,7 +10,8 @@ import { PatientRestService } from '../../../@fhir/patient-rest.service';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-
+  conditions = []
+  procedures = []
   dataSet = [];
   loadingVisible = false;
   currentDate: Date = new Date();
@@ -51,8 +52,16 @@ export class IndexComponent implements OnInit {
   }
 
   fetchData(patient) {
+    if (patient == null) {
+      return;
+    }
+    this.conditions = [];
+    this.procedures = [];
+    this.dataSet = [];
+
     this.loadingVisible = true;
     this.conditionRestService.fetchAll({}, patient.id).subscribe(next => {
+      this.conditions = this.conditions.concat(next);
       next = next.map(entity => {
         if (entity['onsetPeriod']) {
           entity['start'] = entity['onsetPeriod']['start'];
@@ -69,6 +78,7 @@ export class IndexComponent implements OnInit {
 
     this.loadingVisible = true;
     this.procedureRestService.fetchAll({}, patient.id).subscribe(next => {
+      this.procedures = this.procedures.concat(next);
       next = next.map(entity => {
         if (entity['performedPeriod']) {
           entity['start'] = entity['performedPeriod']['start'];
