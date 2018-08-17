@@ -25,4 +25,11 @@ export class ConditionListComponent implements OnInit, OnChanges {
     }
   }
 
+  setCodingCode(rawData, val) {
+    rawData.code = {'coding': [{}]};
+    rawData.code.coding[0] = {
+      display: val,
+    };
+  }
+
 }

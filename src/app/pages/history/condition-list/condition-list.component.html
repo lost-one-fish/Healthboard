@@ -9,12 +9,13 @@
   <dxo-search-panel [visible]="true"></dxo-search-panel>
 
   <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
-    <dxo-popup title="問題資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
+    <dxo-popup title="診斷資訊" [showTitle]="true" [width]="800" [height]="300"></dxo-popup>
     <dxo-form [colCount]="1" [labelLocation]="'left'" formData=""  >
+      <dxi-item dataField="code.coding[0].display"></dxi-item>
     </dxo-form>
   </dxo-editing>
 
-  <dxi-column dataField="code.coding[0].display" caption="問題" dataType="string"></dxi-column>
+  <dxi-column dataField="code.coding[0].display" caption="診斷" dataType="string" [setCellValue]="setCodingCode"></dxi-column>
   <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
   <div *dxTemplate="let row of 'rawDataTemplate'">
     <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
