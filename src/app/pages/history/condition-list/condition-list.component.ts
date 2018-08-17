@@ -22,6 +22,9 @@ export class ConditionListComponent implements OnInit, OnChanges {
   @Output()
   create = new EventEmitter();
 
+  @Output()
+  update = new EventEmitter();
+
   dataSource: DataSource;
 
   constructor() {
@@ -56,6 +59,9 @@ export class ConditionListComponent implements OnInit, OnChanges {
   }
 
   onRowUpdating(e) {
+    const condition = e.oldData;
+    condition['code'] = e.newData.code;
+    this.update.emit(condition);
   }
 
   onRowUpdated(e) {

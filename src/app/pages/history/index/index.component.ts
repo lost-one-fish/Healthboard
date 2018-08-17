@@ -80,6 +80,27 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  onUpdateCondition(resource) {
+    if (!resource.subject || !resource.subject.reference) {
+      resource.subject = {
+        reference: 'Patient/' + this.patient.id,
+      }
+    }
+    this.conditionRestService.update({
+      resource: resource,
+    }).subscribe(next => {
+      notify('更新成功');
+
+      this.conditions = this.conditions.map(item => {
+        if (item.id === resource.id) {
+          return Object.assign({}, item, resource);
+        } else {
+          return item;
+        }
+      });
+    });
+  }
+
   fetchData(patient) {
     if (patient == null) {
       return;

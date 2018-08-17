@@ -14,6 +14,7 @@
         <div class="col-md-12">
           <ngx-condition-list [dataSet]="conditions"
                               (create)="onCreateCondition($event)"
+                              (update)="onUpdateCondition($event)"
           ></ngx-condition-list>
           <br />
           <br />
