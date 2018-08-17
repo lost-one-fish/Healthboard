@@ -50,31 +50,18 @@ export class ConditionListComponent implements OnInit, OnChanges {
   }
 
   onRowInserting(e) {
-    const condition = {
-      'resourceType': 'Condition',
-    };
-    condition['code'] = e.data.code;
-
-    this.create.emit(condition);
-  }
-
-  onRowInserted(e) {
+    e.data.resourceType = 'Condition';
+    this.create.emit(e.data);
   }
 
   onRowUpdating(e) {
-    const condition = e.oldData;
-    condition['code'] = e.newData.code;
-    this.update.emit(condition);
-  }
-
-  onRowUpdated(e) {
+    const resource = e.oldData;
+    resource['code'] = e.newData.code;
+    this.update.emit(resource);
   }
 
   onRowRemoving(e) {
     this.delete.emit(e.data);
-  }
-
-  onRowRemoved(e) {
   }
 
 }

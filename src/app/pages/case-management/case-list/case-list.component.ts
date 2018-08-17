@@ -92,19 +92,10 @@ export class CaseListComponent implements OnInit, OnChanges {
     patient['telecom'] = e.data.telecom;
   }
 
-  onRowInserted(e) {
-  }
-
   onRowUpdating(e) {
   }
 
-  onRowUpdated(e) {
-  }
-
   onRowRemoving(e) {
-  }
-
-  onRowRemoved(e) {
   }
 
   onToolbarPreparing(e) {
