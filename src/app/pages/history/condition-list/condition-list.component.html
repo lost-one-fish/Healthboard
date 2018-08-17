@@ -1,3 +1,21 @@
-<p>
-  condition-list works!
-</p>
+
+<dx-data-grid id="gridContainer"
+              [showRowLines]="true"
+              [showColumnLines]="true"
+              [showBorders]="true">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+  <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+    <dxo-popup title="問題資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
+    <dxo-form [colCount]="1" [labelLocation]="'left'" formData=""  >
+    </dxo-form>
+  </dxo-editing>
+
+  <dxi-column dataField="code.coding[0].display" caption="問題" dataType="string"></dxi-column>
+  <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
+  <div *dxTemplate="let row of 'rawDataTemplate'">
+    <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
+  </div>
+</dx-data-grid>

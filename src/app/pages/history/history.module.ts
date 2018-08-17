@@ -8,11 +8,27 @@ import { ConditionListComponent } from './condition-list/condition-list.componen
 import { ProcedureListComponent } from './procedure-list/procedure-list.component';
 import { DxSchedulerModule } from 'devextreme-angular/ui/scheduler';
 import { ThemeModule } from '../../@theme/theme.module';
+import {
+  DxDataGridModule,
+  DxDateBoxModule,
+  DxNumberBoxModule,
+  DxPopupModule,
+  DxScrollViewModule,
+  DxTextBoxModule,
+  DxToolbarModule,
+} from 'devextreme-angular';
 
 @NgModule({
   imports: [
     CommonModule,
     ThemeModule,
+    DxTextBoxModule,
+    DxNumberBoxModule,
+    DxDateBoxModule,
+    DxToolbarModule,
+    DxDataGridModule,
+    DxScrollViewModule,
+    DxPopupModule,
     DxSchedulerModule,
     HistoryRoutingModule,
   ],
