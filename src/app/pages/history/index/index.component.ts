@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConditionRestService } from '../../../@fhir/condition-rest.service';
 import { ProcedureRestService } from '../../../@fhir/procedure-rest.service';
+import { PatientRestService } from '../../../@fhir/patient-rest.service';
 
 @Component({
   selector: 'ngx-index',
@@ -25,14 +26,26 @@ export class IndexComponent implements OnInit {
       color: '#ff9747',
     },
   ];
+  patient;
 
   constructor(private conditionRestService: ConditionRestService,
               private procedureRestService: ProcedureRestService,
+              private patientRestService: PatientRestService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     const patientId = this.route.snapshot.params['patientId'];
+    if (patientId == null) {
+      const patient = localStorage.getItem('myPatient');
+      if (patient !== null) {
+        this.patient = JSON.parse(patient);
+      }
+    } else {
+      this.patientRestService.read(patientId).subscribe(next => {
+        this.patient = next.data;
+      });
+    }
 
     this.loadingVisible = true;
     this.conditionRestService.fetchAll().subscribe(next => {
