@@ -19,6 +19,6 @@
   <dxi-column dataField="valueQuantity.unit" caption="單位" dataType="string"></dxi-column>
   <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
   <div *dxTemplate="let row of 'rawDataTemplate'">
-    <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
+    <button class="btn btn-xs btn-warning" (click)="onRawData(row.data)">原始資料</button>
   </div>
 </dx-data-grid>

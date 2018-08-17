@@ -22,10 +22,9 @@
     </dxo-form>
   </dxo-editing>
 
-  <dxi-column dataField="code.coding[0].display" caption="診斷" dataType="string"
-              [setCellValue]="setCodingCode"></dxi-column>
-  <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate"></dxi-column>
+  <dxi-column dataField="code.coding[0].display" caption="診斷" dataType="string" [setCellValue]="setCodingCode"></dxi-column>
+  <dxi-column caption="Raw Data" cellTemplate="rawDataTemplate" [width]="100"></dxi-column>
   <div *dxTemplate="let row of 'rawDataTemplate'">
-    <button class="btn btn-warning" (click)="onRawData(row.data)">原始資料</button>
+    <button class="btn btn-xs btn-warning" (click)="onRawData(row.data)">原始資料</button>
   </div>
 </dx-data-grid>
