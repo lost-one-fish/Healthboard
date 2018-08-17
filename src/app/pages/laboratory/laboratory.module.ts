@@ -5,7 +5,6 @@ import { LaboratoryRoutingModule } from './laboratory-routing.module';
 import { IndexComponent } from './index/index.component';
 import { LaboratoryComponent } from './laboratory.component';
 import { LabFormComponent } from './lab-form/lab-form.component';
-import { LabListComponent } from './lab-list/lab-list.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import {
   DxDataGridModule,
@@ -22,7 +21,6 @@ const components = [
   LaboratoryComponent,
   IndexComponent,
   LabFormComponent,
-  LabListComponent,
 ];
 
 @NgModule({
@@ -40,7 +38,6 @@ const components = [
     LaboratoryRoutingModule,
   ],
   declarations: [...components],
-  exports: [LabListComponent],
 })
 export class LaboratoryModule {
 }
