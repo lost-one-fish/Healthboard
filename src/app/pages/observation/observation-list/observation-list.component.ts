@@ -24,9 +24,6 @@ export class ObservationListComponent implements OnInit, OnChanges {
 
   dataSource: DataSource;
 
-  data;
-  popupVisible = false;
-
   constructor() { }
 
   ngOnInit() {
