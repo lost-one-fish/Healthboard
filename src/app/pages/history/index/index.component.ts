@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConditionRestService } from '../../../@fhir/condition-rest.service';
 import { ProcedureRestService } from '../../../@fhir/procedure-rest.service';
 
@@ -26,10 +27,13 @@ export class IndexComponent implements OnInit {
   ];
 
   constructor(private conditionRestService: ConditionRestService,
-              private procedureRestService: ProcedureRestService) {
+              private procedureRestService: ProcedureRestService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    const patientId = this.route.snapshot.params['patientId'];
+
     this.loadingVisible = true;
     this.conditionRestService.fetchAll().subscribe(next => {
       next = next.map(entity => {

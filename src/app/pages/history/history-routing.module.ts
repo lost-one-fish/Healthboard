@@ -9,6 +9,9 @@ const routes: Routes = [{
   children: [{
     path: 'index',
     component: IndexComponent,
+  }, {
+    path: 'index/:patientId',
+    component: IndexComponent,
   }],
 }];
 
