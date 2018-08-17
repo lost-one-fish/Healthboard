@@ -21,27 +21,28 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <dx-scheduler
-            [dataSource]="dataSet"
-            [views]='["timelineDay", "timelineWeek", "timelineMonth"]'
-            currentView="timelineWeek"
-            startDateExpr="start"
-            endDateExpr="end"
-            textExpr="code.coding[0].display"
-            [firstDayOfWeek]="0"
-            [startDayHour]="0"
-            [endDayHour]="24"
-            [cellDuration]="60"
-            [groups]="['resourceType']"
-            [currentDate]="currentDate"
-            [height]="550">
-            <dxi-resource
-              fieldExpr="resourceType"
-              [allowMultiple]="false"
-              [dataSource]="resourceType"
-              label="History"
-            ></dxi-resource>
-          </dx-scheduler>
+          <!-- // FIXME: 暫時隱藏-->
+          <!--<dx-scheduler-->
+            <!--[dataSource]="dataSet"-->
+            <!--[views]='["timelineDay", "timelineWeek", "timelineMonth"]'-->
+            <!--currentView="timelineWeek"-->
+            <!--startDateExpr="start"-->
+            <!--endDateExpr="end"-->
+            <!--textExpr="code.coding[0].display"-->
+            <!--[firstDayOfWeek]="0"-->
+            <!--[startDayHour]="0"-->
+            <!--[endDayHour]="24"-->
+            <!--[cellDuration]="60"-->
+            <!--[groups]="['resourceType']"-->
+            <!--[currentDate]="currentDate"-->
+            <!--[height]="550">-->
+            <!--<dxi-resource-->
+              <!--fieldExpr="resourceType"-->
+              <!--[allowMultiple]="false"-->
+              <!--[dataSource]="resourceType"-->
+              <!--label="History"-->
+            <!--&gt;</dxi-resource>-->
+          <!--</dx-scheduler>-->
         </div>
       </div>
     </div>
