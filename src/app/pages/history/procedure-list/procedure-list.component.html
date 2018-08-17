@@ -3,13 +3,18 @@
               [dataSource]="dataSource"
               [showRowLines]="true"
               [showColumnLines]="true"
-              [showBorders]="true">
+              [showBorders]="true"
+
+              (onRowInserting)="onRowInserting($event)"
+              (onRowUpdating)="onRowUpdating($event)"
+              (onRowRemoving)="onRowRemoving($event)"
+>
 
   <dxo-paging [pageSize]="10"></dxo-paging>
   <dxo-search-panel [visible]="true"></dxo-search-panel>
 
   <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
-    <dxo-popup title="處置資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
+    <dxo-popup title="處置資訊" [showTitle]="true" [width]="800" [height]="300"></dxo-popup>
     <dxo-form >
       <dxi-item dataField="code.coding[0].display"></dxi-item>
       <dxi-item dataField="status"></dxi-item>
