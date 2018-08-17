@@ -3,7 +3,7 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Home',
-    icon: 'nb-home',
+    icon: 'icon ion-ios-home',
     link: '/pages/home/index',
     home: true,
     data: {
@@ -12,12 +12,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
-    title: 'FEATURES',
-    group: true,
-  },
-  {
     title: '檢驗值',
-    icon: 'fa fa fa-bar-chart',
+    icon: 'icon ion-md-analytics',
     link: '/pages/laboratory/index',
     data: {
       permission: 'view',
@@ -25,8 +21,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
-    title: '病史',
-    icon: 'fa fa fa-bar-chart',
+    title: '病史/處置史',
+    icon: 'icon ion-md-clipboard',
     link: '/pages/history/index',
     data: {
       permission: 'view',
@@ -34,8 +30,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     },
   },
   {
+    title: '診所/交換中心',
+    group: true,
+    data: {
+      permission: 'view',
+      resource: 'home',
+    },
+  },
+  {
     title: '個案管理',
-    icon: 'fa fa fa-users',
+    icon: 'icon ion-ios-people',
     link: '/pages/case-management/index',
     data: {
       permission: 'view',
