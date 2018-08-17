@@ -23,6 +23,15 @@ export class CaseListComponent implements OnInit, OnChanges {
   @Output()
   refresh = new EventEmitter();
 
+  @Output()
+  create = new EventEmitter();
+
+  @Output()
+  update = new EventEmitter();
+
+  @Output()
+  delete = new EventEmitter();
+
   dataSource: DataSource;
 
   data;
@@ -84,18 +93,18 @@ export class CaseListComponent implements OnInit, OnChanges {
     const patient = {
       'resourceType': 'Patient',
     };
-    patient['identifier'] = e.data.identifier;
-    patient['name'] = e.data.name;
-    patient['gender'] = e.data.gender;
-    patient['birthDate'] = e.data.birthDate;
-    patient['address'] = e.data.address;
-    patient['telecom'] = e.data.telecom;
+    e.data.resourceType = 'Patient';
+    this.create.emit(e.data);
   }
 
   onRowUpdating(e) {
+    const resource = e.oldData;
+    resource['code'] = e.newData.code;
+    this.update.emit(resource);
   }
 
   onRowRemoving(e) {
+    this.delete.emit(e.data);
   }
 
   onToolbarPreparing(e) {
