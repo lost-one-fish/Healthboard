@@ -1,7 +1,12 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 col-lg-12">
-      <ngx-case-list id="cases" [dataSet]="dataSet" (refresh)="fetchData()"></ngx-case-list>
+      <ngx-case-list id="cases" [dataSet]="dataSet"
+                     (create)="onCreatePatient($event)"
+                     (update)="onUpdatePatient($event)"
+                     (delete)="onDeletePatient($event)"
+                     (refresh)="fetchData()"
+      ></ngx-case-list>
     </div>
   </div>
 </div>
