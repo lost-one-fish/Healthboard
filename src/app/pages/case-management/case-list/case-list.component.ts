@@ -50,17 +50,15 @@ export class CaseListComponent implements OnInit, OnChanges {
   }
 
   setIdentifier(rawData, val) {
-    rawData.identifier = [];
-    rawData.identifier[0] = {
+    rawData.identifier = [{
       value: val,
-    };
+    }];
   }
 
   setName(rawData, val) {
-    rawData.name = [];
-    rawData.name[0] = {
+    rawData.name = [{
       text: val,
-    };
+    }];
   }
 
   setGender(rawData, val) {
@@ -72,34 +70,28 @@ export class CaseListComponent implements OnInit, OnChanges {
   }
 
   setAddress(rawData, val) {
-    rawData.address = [];
-    rawData.address[0] = {
+    rawData.address = [{
       text: val,
-    };
+    }];
   }
 
   setTelecom(rawData, val) {
-    rawData.telecom = [];
-    rawData.telecom[0] = {
+    rawData.telecom = [{
       system: 'phone',
       value: val,
-    };
+    }];
   }
 
   setContact(rawData, val) {
   }
 
   onRowInserting(e) {
-    const patient = {
-      'resourceType': 'Patient',
-    };
     e.data.resourceType = 'Patient';
     this.create.emit(e.data);
   }
 
   onRowUpdating(e) {
-    const resource = e.oldData;
-    resource['code'] = e.newData.code;
+    const resource = Object.assign(e.oldData, e.newData);
     this.update.emit(resource);
   }
 
