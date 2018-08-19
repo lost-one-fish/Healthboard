@@ -17,6 +17,9 @@ export class IndexComponent implements OnInit {
   loadingVisible = false;
   currentDate: Date = new Date();
 
+  data;
+  popupVisible = false;
+
   resourceType = [
     {
       text: 'Condition',
@@ -207,6 +210,11 @@ export class IndexComponent implements OnInit {
     }, () => {
       this.loadingVisible = false;
     });
+  }
+
+  onRawData(data) {
+    this.data = data;
+    this.popupVisible = true;
   }
 
 }

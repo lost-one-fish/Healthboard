@@ -28,6 +28,9 @@ export class ProcedureListComponent implements OnInit, OnChanges {
   @Output()
   delete = new EventEmitter();
 
+  @Output()
+  rawdata = new EventEmitter();
+
   dataSource: DataSource;
 
   statusItems = [
@@ -97,6 +100,10 @@ export class ProcedureListComponent implements OnInit, OnChanges {
 
   onRowRemoving(e) {
     this.delete.emit(e.data);
+  }
+
+  onRawData(data) {
+    this.rawdata.emit(data);
   }
 
 }

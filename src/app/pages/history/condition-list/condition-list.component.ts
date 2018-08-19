@@ -28,6 +28,9 @@ export class ConditionListComponent implements OnInit, OnChanges {
   @Output()
   delete = new EventEmitter();
 
+  @Output()
+  rawdata = new EventEmitter();
+
   dataSource: DataSource;
 
   constructor() {
@@ -62,6 +65,10 @@ export class ConditionListComponent implements OnInit, OnChanges {
 
   onRowRemoving(e) {
     this.delete.emit(e.data);
+  }
+
+  onRawData(data) {
+    this.rawdata.emit(data);
   }
 
 }

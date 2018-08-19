@@ -16,6 +16,7 @@
                               (create)="onCreateCondition($event)"
                               (update)="onUpdateCondition($event)"
                               (delete)="onDeleteCondition($event)"
+                              (rawdata)="onRawData($event)"
           ></ngx-condition-list>
           <br />
           <br />
@@ -23,10 +24,26 @@
                               (create)="onCreateProcedure($event)"
                               (update)="onUpdateProcedure($event)"
                               (delete)="onDeleteProcedure($event)"
+                              (rawdata)="onRawData($event)"
           ></ngx-procedure-list>
 
           <br/>
           <hr/>
+          <dx-popup
+            class="popup"
+            [width]="600"
+            [height]="600"
+            [showTitle]="true"
+            title="Resource"
+            [dragEnabled]="false"
+            [closeOnOutsideClick]="true"
+            [(visible)]="popupVisible">
+            <div *dxTemplate="let item of 'content'">
+              <dx-scroll-view >
+                <pre class="mat-h3">{{data | json}}</pre>
+              </dx-scroll-view>
+            </div>
+          </dx-popup>
         </div>
       </div>
       <div class="row">
