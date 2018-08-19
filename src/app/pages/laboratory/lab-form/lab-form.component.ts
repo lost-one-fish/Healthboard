@@ -99,7 +99,6 @@ export class LabFormComponent implements OnInit, OnChanges {
           ],
         },
       });
-      return;
     }
 
     if (changes['subject'] && changes['subject'].currentValue) {
