@@ -114,25 +114,16 @@ export class IndexComponent implements OnInit {
     this.observationRestService.create({
       resource: resource,
     }).subscribe(next => {
-      notify('新增成功');
-
-      let created: boolean = true;
-      this.dataSet = this.dataSet.map(item => {
-        if (item.id === resource.id) {
-          created = false;
-          return Object.assign({}, item, resource);
-        } else {
-          return item;
-        }
+      this.dataSet = this.dataSet.filter(item => {
+        return item.id !== resource.id;
       });
-      if (created) {
-        this.dataSet.reverse();
-        this.dataSet.push(next.data);
-        this.dataSet.reverse();
-      }
+      this.dataSet.push(next.data);
 
       this.dataSource = new DataSource(this.dataSet);
-
+    }, error => {
+      notify('新增失敗');
+    }, () => {
+      notify('新增成功');
     });
   }
 
