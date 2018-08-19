@@ -45,11 +45,22 @@ export class ConditionListComponent implements OnInit, OnChanges {
     }
   }
 
-  setCodingCode(rawData, val) {
-    rawData.code = {'coding': [{}]};
-    rawData.code.coding[0] = {
-      display: val,
-    };
+  setCodingDisplay(newData, value, currentRowData) {
+    newData.code = Object.assign({}, currentRowData.code);
+    try {
+      newData.code.coding[0].display = value;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  setCodingCode(newData, value, currentRowData) {
+    newData.code = Object.assign({}, currentRowData.code);
+    try {
+      newData.code.coding[0].code = value;
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   onRowInserting(e) {
