@@ -51,6 +51,17 @@ export class ConditionListComponent implements OnInit, OnChanges {
     }
   }
 
+  onInitNewRow(e) {
+    if (!e.data.code || !e.data.code.coding) {
+      e.data.code = {
+        coding: [{
+          display: '',
+          code: '',
+        }],
+      };
+    }
+  }
+
   setCodingDisplay(newData, value, currentRowData) {
     newData.code = Object.assign({}, currentRowData.code);
     try {

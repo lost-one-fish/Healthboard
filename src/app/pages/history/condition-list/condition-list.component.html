@@ -4,6 +4,7 @@
               [showColumnLines]="true"
               [showBorders]="true"
 
+              (onInitNewRow)="onInitNewRow($event)"
               (onRowInserting)="onRowInserting($event)"
               (onRowUpdating)="onRowUpdating($event)"
               (onRowRemoving)="onRowRemoving($event)"
