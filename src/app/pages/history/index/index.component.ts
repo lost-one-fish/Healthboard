@@ -11,8 +11,8 @@ import notify from '../../../../../node_modules/devextreme/ui/notify';
   styleUrls: ['./index.component.scss'],
 })
 export class IndexComponent implements OnInit {
-  conditions = []
-  procedures = []
+  conditions = [];
+  procedures = [];
   conditionLoadingVisible = false;
   procedureLoadingVisible = false;
 
@@ -63,22 +63,16 @@ export class IndexComponent implements OnInit {
     this.conditionRestService.create({
       resource: resource,
     }).subscribe(next => {
-      notify('新增成功');
-
-      let created: boolean = true;
-      this.conditions = this.conditions.map(item => {
-        if (item.id === resource.id) {
-          created = false;
-          return Object.assign({}, item, resource);
-        } else {
-          return item;
-        }
+      this.conditions = this.conditions.filter(item => {
+        return item.id !== resource.id;
       });
-      if (created) {
-        this.conditions.reverse();
-        this.conditions.push(next.data);
-        this.conditions.reverse();
-      }
+      this.conditions.reverse();
+      this.conditions.push(next.data);
+      this.conditions.reverse();
+    }, error => {
+      notify('新增失敗');
+    }, () => {
+      notify('新增成功');
     });
   }
 
@@ -91,15 +85,17 @@ export class IndexComponent implements OnInit {
     this.conditionRestService.update({
       resource: resource,
     }).subscribe(next => {
-      notify('更新成功');
-
       this.conditions = this.conditions.map(item => {
         if (item.id === resource.id) {
-          return Object.assign({}, item, resource);
+          return Object.assign({}, next.data);
         } else {
           return item;
         }
       });
+    }, error => {
+      notify('更新失敗');
+    }, () => {
+      notify('更新成功');
     });
   }
 
@@ -120,22 +116,16 @@ export class IndexComponent implements OnInit {
     this.procedureRestService.create({
       resource: resource,
     }).subscribe(next => {
-      notify('新增成功');
-
-      let created: boolean = true;
-      this.procedures = this.procedures.map(item => {
-        if (item.id === resource.id) {
-          created = false;
-          return Object.assign({}, item, resource);
-        } else {
-          return item;
-        }
+      this.procedures = this.procedures.filter(item => {
+        return item.id !== resource.id;
       });
-      if (created) {
-        this.procedures.reverse();
-        this.procedures.push(next.data);
-        this.procedures.reverse();
-      }
+      this.procedures.reverse();
+      this.procedures.push(next.data);
+      this.procedures.reverse();
+    }, error => {
+      notify('新增失敗');
+    }, () => {
+      notify('新增成功');
     });
   }
 
@@ -148,15 +138,17 @@ export class IndexComponent implements OnInit {
     this.procedureRestService.update({
       resource: resource,
     }).subscribe(next => {
-      notify('更新成功');
-
       this.procedures = this.procedures.map(item => {
         if (item.id === resource.id) {
-          return Object.assign({}, item, resource);
+          return Object.assign({}, next.data);
         } else {
           return item;
         }
       });
+    }, error => {
+      notify('更新失敗');
+    }, () => {
+      notify('更新成功');
     });
   }
 
