@@ -111,8 +111,8 @@ export class ProcedureListComponent implements OnInit, OnChanges {
     }
   }
 
-  setStatusValue(rawData, val) {
-    rawData.status = val;
+  setStatusValue(newData, value, currentRowData) {
+    newData.status = value;
   }
 
   onRowInserting(e) {
