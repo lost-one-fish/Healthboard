@@ -49,6 +49,23 @@ export class CaseListComponent implements OnInit, OnChanges {
     }
   }
 
+  onInitNewRow(e) {
+    if (!e.data.contact) {
+      e.data.contact = [{
+        name: {
+          text: '',
+        },
+        relationship: [{
+          text: '',
+        }],
+        telecom: [{
+          system: '',
+          value: '',
+        }],
+      }];
+    }
+  }
+
   setIdentifier(rawData, val) {
     rawData.identifier = [{
       value: val,
@@ -82,7 +99,32 @@ export class CaseListComponent implements OnInit, OnChanges {
     }];
   }
 
-  setContact(rawData, val) {
+  setContactName(newData, value, currentRowData) {
+    newData.contact = Object.assign([], currentRowData.contact);
+    try {
+      newData.contact[0].name.text = value;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  setContactRelationship(newData, value, currentRowData) {
+    newData.contact = Object.assign([], currentRowData.contact);
+    try {
+      newData.contact[0].relationship[0].text = value;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  setContactTelecom(newData, value, currentRowData) {
+    newData.contact = Object.assign([], currentRowData.contact);
+    try {
+      newData.contact[0].telecom[0].system = 'phone';
+      newData.contact[0].telecom[0].value = value;
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   onRowInserting(e) {
@@ -120,4 +162,9 @@ export class CaseListComponent implements OnInit, OnChanges {
     console.info(this.data);
   }
 
+  onContentReady(e) {
+    e.component.columnOption('command:edit', {
+      visibleIndex: -1,
+    });
+  }
 }

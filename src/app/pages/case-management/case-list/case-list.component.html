@@ -7,15 +7,17 @@
                   [showColumnLines]="true"
                   [showBorders]="true"
 
+                  (onInitNewRow)="onInitNewRow($event)"
                   (onRowInserting)="onRowInserting($event)"
                   (onRowUpdating)="onRowUpdating($event)"
                   (onRowRemoving)="onRowRemoving($event)"
 
+                  (onContentReady)="onContentReady($event)"
                   (onToolbarPreparing)="onToolbarPreparing($event)">
 
       <dxo-paging [pageSize]="10"></dxo-paging>
 
-      <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+      <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
         <dxo-popup title="個案資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
         <dxo-form [colCount]="1" [labelLocation]="'left'" formData=""  >
           <dxi-item dataField="identifier[0].value"></dxi-item>
@@ -25,9 +27,9 @@
           <dxi-item dataField="address[0].text"></dxi-item>
           <dxi-item dataField="telecom[0].value"></dxi-item>
           <dxi-item itemType="group" caption="聯絡人">
-            <dxi-item dataField="contactName"></dxi-item>
-            <dxi-item dataField="contactRelationship"></dxi-item>
-            <dxi-item dataField="contactRelationship"></dxi-item>
+            <dxi-item dataField="contact[0].name.text"></dxi-item>
+            <dxi-item dataField="contact[0].relationship[0].text"></dxi-item>
+            <dxi-item dataField="contact[0].telecom[0].value"></dxi-item>
           </dxi-item>
         </dxo-form>
       </dxo-editing>
@@ -43,8 +45,11 @@
                   [setCellValue]="setAddress"></dxi-column>
       <dxi-column dataField="telecom[0].value" caption="聯絡電話" dataType="string" cellTemplate="telecomTemplate" [width]="100"
                   [setCellValue]="setTelecom"></dxi-column>
-      <dxi-column caption="聯絡人" dataType="string" cellTemplate="contactTemplate"
-                  [setCellValue]="setContact"></dxi-column>
+      <dxi-column caption="聯絡人" cellTemplate="contactTemplate"></dxi-column>
+      <!-- reference: https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/columns/#visible -->
+      <dxi-column [visible]=false dataField="contact[0].name.text" caption="姓名" [setCellValue]="setContactName"></dxi-column>
+      <dxi-column [visible]=false dataField="contact[0].relationship[0].text" caption="關係" [setCellValue]="setContactRelationship"></dxi-column>
+      <dxi-column [visible]=false dataField="contact[0].telecom[0].value" caption="聯絡電話" [setCellValue]="setContactTelecom"></dxi-column>
       <dxi-column caption="檢驗值" dataType="string" cellTemplate="labTemplate" [width]="70"></dxi-column>
       <dxi-column caption="歷史" dataType="string" cellTemplate="historyTemplate" [width]="70"></dxi-column>
       <dxi-column caption="原始資料" dataType="string" cellTemplate="rawDataTemplate" [width]="70"></dxi-column>
@@ -60,7 +65,6 @@
           <div> {{row.data?.contact[0]?.relationship[0]?.text}} </div>
           <div *ngFor="let item of row.data.contact[0].telecom; let i = index">
             <div *ngIf="item.system === 'phone'"> 聯絡電話：{{item.value}} </div>
-            <div *ngIf="item.system === 'email'"> 電子郵件：{{item.value}} </div>
           </div>
         </div>
       </div>
