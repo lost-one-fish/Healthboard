@@ -15,7 +15,7 @@
   <dxo-paging [pageSize]="5"></dxo-paging>
   <dxo-search-panel [visible]="true"></dxo-search-panel>
 
-  <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+  <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [texts]="texts">
     <dxo-popup title="處置資訊" [showTitle]="true" [width]="800" [height]="300"></dxo-popup>
     <dxo-form [colCount]="1" [labelLocation]="'left'">
       <dxi-item dataField="code.coding[0].display" [isRequired]="true"></dxi-item>

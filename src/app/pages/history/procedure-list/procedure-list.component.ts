@@ -39,6 +39,13 @@ export class ProcedureListComponent implements OnInit, OnChanges {
 
   dataSource: DataSource;
 
+  texts = {
+    // reference:
+    // https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/editing/texts/
+    editRow: '編輯',
+    deleteRow: '刪除',
+  };
+
   statusItems = [
     {
       key: 'preparation',

@@ -37,6 +37,13 @@ export class ConditionListComponent implements OnInit, OnChanges {
   @Output()
   rawdata = new EventEmitter();
 
+  texts = {
+    // reference:
+    // https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/editing/texts/
+    editRow: '編輯',
+    deleteRow: '刪除',
+  };
+
   dataSource: DataSource;
 
   constructor() {
