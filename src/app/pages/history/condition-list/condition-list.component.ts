@@ -54,12 +54,13 @@ export class ConditionListComponent implements OnInit, OnChanges {
 
   onRowInserting(e) {
     e.data.resourceType = 'Condition';
+    e.data['assertedDate'] = new Date();
     this.create.emit(e.data);
   }
 
   onRowUpdating(e) {
-    const resource = e.oldData;
-    resource['code'] = e.newData.code;
+    const resource = Object.assign(e.oldData, e.newData);
+    resource['assertedDate'] = new Date();
     this.update.emit(resource);
   }
 

@@ -89,12 +89,13 @@ export class ProcedureListComponent implements OnInit, OnChanges {
 
   onRowInserting(e) {
     e.data.resourceType = 'Procedure';
+    e.data['performedDateTime'] = new Date();
     this.create.emit(e.data);
   }
 
   onRowUpdating(e) {
-    const resource = e.oldData;
-    resource['code'] = e.newData.code;
+    const resource = Object.assign(e.oldData, e.newData);
+    resource['performedDateTime'] = new Date();
     this.update.emit(resource);
   }
 

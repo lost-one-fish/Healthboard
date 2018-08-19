@@ -15,11 +15,12 @@
   <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
     <dxo-popup title="處置資訊" [showTitle]="true" [width]="800" [height]="300"></dxo-popup>
     <dxo-form [colCount]="1" [labelLocation]="'left'">
-      <dxi-item dataField="code.coding[0].display"></dxi-item>
+      <dxi-item dataField="code.coding[0].display" [isRequired]="true"></dxi-item>
       <dxi-item dataField="status" editorType="dxSelectBox" [isRequired]="true"></dxi-item>
     </dxo-form>
   </dxo-editing>
 
+  <dxi-column dataField="performedDateTime" caption="處置時間" dataType="datetime" format="yyyy-MM-dd'T'HH:mm:ss"></dxi-column>
   <dxi-column dataField="code.coding[0].display" caption="處置" dataType="string" [setCellValue]="setCodingCode"></dxi-column>
   <dxi-column dataField="status" caption="狀態" dataType="string" [setCellValue]="setStatusValue">
     <dxo-lookup
