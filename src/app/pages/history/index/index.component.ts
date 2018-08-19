@@ -124,7 +124,7 @@ export class IndexComponent implements OnInit {
       notify('新增成功');
 
       let created: boolean = true;
-      this.conditions = this.conditions.map(item => {
+      this.procedures = this.procedures.map(item => {
         if (item.id === resource.id) {
           created = false;
           return Object.assign({}, item, resource);
@@ -133,9 +133,9 @@ export class IndexComponent implements OnInit {
         }
       });
       if (created) {
-        this.conditions.reverse();
-        this.conditions.push(next.data);
-        this.conditions.reverse();
+        this.procedures.reverse();
+        this.procedures.push(next.data);
+        this.procedures.reverse();
       }
     });
   }
@@ -151,7 +151,7 @@ export class IndexComponent implements OnInit {
     }).subscribe(next => {
       notify('更新成功');
 
-      this.conditions = this.conditions.map(item => {
+      this.procedures = this.procedures.map(item => {
         if (item.id === resource.id) {
           return Object.assign({}, item, resource);
         } else {
