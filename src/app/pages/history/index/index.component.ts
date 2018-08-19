@@ -13,9 +13,8 @@ import notify from '../../../../../node_modules/devextreme/ui/notify';
 export class IndexComponent implements OnInit {
   conditions = []
   procedures = []
-  dataSet = [];
-  loadingVisible = false;
-  currentDate: Date = new Date();
+  conditionLoadingVisible = false;
+  procedureLoadingVisible = false;
 
   data;
   popupVisible = false;
@@ -173,42 +172,34 @@ export class IndexComponent implements OnInit {
     if (patient == null) {
       return;
     }
-    this.conditions = [];
-    this.procedures = [];
-    this.dataSet = [];
+    this.onLoadingConditions();
+    this.onLoadingProcedures();
+  }
 
-    this.loadingVisible = true;
-    this.conditionRestService.fetchAll({}, patient.id).subscribe(next => {
+  onLoadingConditions() {
+    this.conditions = [];
+
+    this.conditionLoadingVisible = true;
+    this.conditionRestService.fetchAll({}, this.patient.id).subscribe(next => {
       this.conditions = this.conditions.concat(next);
-      next = next.map(entity => {
-        if (entity['onsetPeriod']) {
-          entity['start'] = entity['onsetPeriod']['start'];
-          entity['end'] = entity['onsetPeriod']['end'];
-        }
-        return entity;
-      });
-      this.dataSet = this.dataSet.concat(next);
     }, err => {
       console.error(err);
     }, () => {
-      this.loadingVisible = false;
+      this.conditionLoadingVisible = false;
     });
 
-    this.loadingVisible = true;
-    this.procedureRestService.fetchAll({}, patient.id).subscribe(next => {
+  }
+
+  onLoadingProcedures() {
+    this.procedures = [];
+
+    this.procedureLoadingVisible = true;
+    this.procedureRestService.fetchAll({}, this.patient.id).subscribe(next => {
       this.procedures = this.procedures.concat(next);
-      next = next.map(entity => {
-        if (entity['performedPeriod']) {
-          entity['start'] = entity['performedPeriod']['start'];
-          entity['end'] = entity['performedPeriod']['end'];
-        }
-        return entity;
-      });
-      this.dataSet = this.dataSet.concat(next);
     }, err => {
       console.error(err);
     }, () => {
-      this.loadingVisible = false;
+      this.procedureLoadingVisible = false;
     });
   }
 

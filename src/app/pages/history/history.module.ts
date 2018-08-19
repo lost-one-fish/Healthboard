@@ -6,11 +6,11 @@ import { HistoryComponent } from './history.component';
 import { IndexComponent } from './index/index.component';
 import { ConditionListComponent } from './condition-list/condition-list.component';
 import { ProcedureListComponent } from './procedure-list/procedure-list.component';
-import { DxSchedulerModule } from 'devextreme-angular/ui/scheduler';
 import { ThemeModule } from '../../@theme/theme.module';
 import {
   DxDataGridModule,
   DxDateBoxModule,
+  DxLoadPanelModule,
   DxNumberBoxModule,
   DxPopupModule,
   DxScrollViewModule,
@@ -29,7 +29,7 @@ import {
     DxDataGridModule,
     DxScrollViewModule,
     DxPopupModule,
-    DxSchedulerModule,
+    DxLoadPanelModule,
     HistoryRoutingModule,
   ],
   declarations: [HistoryComponent, IndexComponent, ConditionListComponent, ProcedureListComponent],

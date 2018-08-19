@@ -13,18 +13,22 @@
       <div class="row">
         <div class="col-md-12">
           <ngx-condition-list [dataSet]="conditions"
+                              [loadingVisible]="conditionLoadingVisible"
                               (create)="onCreateCondition($event)"
                               (update)="onUpdateCondition($event)"
                               (delete)="onDeleteCondition($event)"
                               (rawdata)="onRawData($event)"
+                              (refresh)="onLoadingConditions($event)"
           ></ngx-condition-list>
           <br />
           <br />
           <ngx-procedure-list [dataSet]="procedures"
+                              [loadingVisible]="procedureLoadingVisible"
                               (create)="onCreateProcedure($event)"
                               (update)="onUpdateProcedure($event)"
                               (delete)="onDeleteProcedure($event)"
                               (rawdata)="onRawData($event)"
+                              (refresh)="onLoadingProcedures($event)"
           ></ngx-procedure-list>
 
           <br/>
@@ -44,32 +48,6 @@
               </dx-scroll-view>
             </div>
           </dx-popup>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <!-- // FIXME: 暫時隱藏-->
-          <!--<dx-scheduler-->
-            <!--[dataSource]="dataSet"-->
-            <!--[views]='["timelineDay", "timelineWeek", "timelineMonth"]'-->
-            <!--currentView="timelineWeek"-->
-            <!--startDateExpr="start"-->
-            <!--endDateExpr="end"-->
-            <!--textExpr="code.coding[0].display"-->
-            <!--[firstDayOfWeek]="0"-->
-            <!--[startDayHour]="0"-->
-            <!--[endDayHour]="24"-->
-            <!--[cellDuration]="60"-->
-            <!--[groups]="['resourceType']"-->
-            <!--[currentDate]="currentDate"-->
-            <!--[height]="550">-->
-            <!--<dxi-resource-->
-              <!--fieldExpr="resourceType"-->
-              <!--[allowMultiple]="false"-->
-              <!--[dataSource]="resourceType"-->
-              <!--label="History"-->
-            <!--&gt;</dxi-resource>-->
-          <!--</dx-scheduler>-->
         </div>
       </div>
     </div>

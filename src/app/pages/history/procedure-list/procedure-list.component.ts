@@ -19,6 +19,12 @@ export class ProcedureListComponent implements OnInit, OnChanges {
   @Input()
   dataSet = [];
 
+  @Input()
+  loadingVisible = false;
+
+  @Output()
+  refresh = new EventEmitter();
+
   @Output()
   create = new EventEmitter();
 
@@ -112,6 +118,21 @@ export class ProcedureListComponent implements OnInit, OnChanges {
 
   onRowRemoving(e) {
     this.delete.emit(e.data);
+  }
+
+  onToolbarPreparing(e) {
+    e.toolbarOptions.items.unshift({
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        icon: 'refresh',
+        onClick: this.refreshDataGrid.bind(this),
+      },
+    });
+  }
+
+  refreshDataGrid() {
+    this.refresh.emit({});
   }
 
   onRawData(data) {
