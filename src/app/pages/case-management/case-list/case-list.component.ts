@@ -34,6 +34,8 @@ export class CaseListComponent implements OnInit, OnChanges {
 
   dataSource: DataSource;
 
+  items = ['male', 'female', 'other', 'unknown'];
+
   data;
   popupVisible = false;
 
@@ -78,8 +80,8 @@ export class CaseListComponent implements OnInit, OnChanges {
     }];
   }
 
-  setGender(rawData, val) {
-    rawData.gender = val;
+  setGender(e, rowData) {
+    rowData.setValue(e.value);
   }
 
   setBirthDate(rawData, val) {

@@ -10,6 +10,7 @@ import {
   DxDataGridModule,
   DxLoadPanelModule,
   DxPopupModule,
+  DxRadioGroupModule,
   DxScrollViewModule,
 } from 'devextreme-angular';
 import { IndexComponent } from './index/index.component';
@@ -28,6 +29,7 @@ const components = [
     MatIconModule,
     DxDataGridModule,
     DxScrollViewModule,
+    DxRadioGroupModule,
     DxPopupModule,
     DxLoadPanelModule,
   ],

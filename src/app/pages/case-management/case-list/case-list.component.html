@@ -19,7 +19,7 @@
 
       <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
         <dxo-popup title="個案資訊" [showTitle]="true" [width]="800" [height]="600"></dxo-popup>
-        <dxo-form [colCount]="1" [labelLocation]="'left'" formData=""  >
+        <dxo-form [colCount]="1" [labelLocation]="'left'" >
           <dxi-item dataField="identifier[0].value"></dxi-item>
           <dxi-item dataField="name[0].text"></dxi-item>
           <dxi-item dataField="gender"></dxi-item>
@@ -37,8 +37,7 @@
                   [width]="100" [setCellValue]="setIdentifier"></dxi-column>
       <dxi-column dataField="name[0].text" caption="姓名" dataType="string" [width]="70"
                   [setCellValue]="setName"></dxi-column>
-      <dxi-column dataField="gender" caption="性別" dataType="object" [width]="60"
-                  [setCellValue]="setGender"></dxi-column>
+      <dxi-column dataField="gender" caption="性別" dataType="string" [width]="60" editCellTemplate="genderTemplate"></dxi-column>
       <dxi-column dataField="birthDate" caption="出生日期" dataType="datetime" format="yyyy-MM-dd" [width]="100"
                   [setCellValue]="setBirthDate"></dxi-column>
       <dxi-column dataField="address[0].text" caption="聯絡地址" dataType="string"
@@ -53,6 +52,16 @@
       <dxi-column caption="檢驗值" dataType="string" cellTemplate="labTemplate" [width]="70"></dxi-column>
       <dxi-column caption="歷史" dataType="string" cellTemplate="historyTemplate" [width]="70"></dxi-column>
       <dxi-column caption="原始資料" dataType="string" cellTemplate="rawDataTemplate" [width]="70"></dxi-column>
+
+      <!-- reference: https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/columns/#editCellTemplate -->
+        <div *dxTemplate="let row of 'genderTemplate';">
+        <dx-radio-group
+          [items]="items"
+          [value]="row.value"
+          (onValueChanged)="setGender($event, row)"
+          layout="horizontal">
+        </dx-radio-group>
+      </div>
 
       <div *dxTemplate="let row of 'telecomTemplate'">
         <div *ngFor="let item of row.data.telecom; let i = index">
