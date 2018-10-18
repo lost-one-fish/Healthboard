@@ -44,7 +44,7 @@ export class RavenErrorHandler implements ErrorHandler {
     AppRoutingModule,
 
     FhirModule.forRoot({
-      serviceUrl: 'http://211.20.120.55:8034/baseDstu3',
+      serviceUrl: 'http://192.168.100.55:8000/baseDstu3',
       auth: {
         type: 'none',
       },
