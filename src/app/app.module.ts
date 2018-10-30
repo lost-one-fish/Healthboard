@@ -43,14 +43,7 @@ export class RavenErrorHandler implements ErrorHandler {
     HttpClientModule,
     AppRoutingModule,
 
-    FhirModule.forRoot({
-      serviceUrl: 'http://192.168.100.55:8000/baseDstu3',
-      auth: {
-        type: 'none',
-      },
-      patientId: '',
-      userId: '',
-    }),
+    FhirModule.forRoot(environment.fhirServer),
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
