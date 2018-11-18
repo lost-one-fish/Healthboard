@@ -1,0 +1,9 @@
+version: '3'
+services:
+  frontend:
+    image: pickonefish/healthboard:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8030:80"

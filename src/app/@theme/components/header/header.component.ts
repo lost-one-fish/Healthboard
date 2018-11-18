@@ -6,6 +6,7 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
 import { ResourceService } from '../../../@fhir/resource.service';
 import notify from '../../../../../node_modules/devextreme/ui/notify';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'ngx-header',
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
 
 
   @Input() position = 'normal';
+
+  serviceUrl = environment.fhirServer.serviceUrl;
 
   user: any;
 

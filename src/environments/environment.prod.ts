@@ -5,4 +5,12 @@
  */
 export const environment = {
   production: true,
+  fhirServer: {
+    serviceUrl: 'http://localhost:8034/baseDstu3',
+    auth: {
+      type: 'none',
+    },
+    patientId: '',
+    userId: '',
+  },
 };
