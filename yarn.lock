@@ -9354,11 +9354,6 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
-socicon@3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/socicon/-/socicon-3.0.5.tgz#bfa06fcf7f2b6f3cdc3944337742358e9e050b6d"
-  integrity sha1-v6Bvz38rbzzcOUQzd0I1jp4FC20=
-
 socket.io-adapter@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-1.1.1.tgz#2a805e8a14d6372124dd9159ad4502f8cb07f06b"
