@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
+import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
@@ -16,11 +16,19 @@ export const NB_CORE_PROVIDERS = [
     strategies: [
       NbPasswordAuthStrategy.setup({
         name: 'email',
-        baseEndpoint: environment['authServer'],
+        baseEndpoint: environment['backend'],
+        register: {
+          endpoint: '/api/auth/register',
+          method: 'post',
+          redirect: {
+            success: '/',
+            failure: null,
+          },
+          defaultMessages: ['您已經成功註冊'],
+        },
         login: {
           alwaysFail: false,
-          rememberMe: true,
-          'endpoint': '/api/auth/token',
+          endpoint: '/api/auth/token',
           method: 'post',
           redirect: {
             success: '/',

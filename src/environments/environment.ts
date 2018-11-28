@@ -11,7 +11,7 @@
 export const environment = {
   production: false,
   fhirServer: {
-    serviceUrl: 'http://192.168.100.100:8500/baseDstu3',
+    serviceUrl: 'http://localhost:8034/baseDstu3',
     auth: {
       type: 'none',
     },

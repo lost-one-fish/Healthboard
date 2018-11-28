@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { from } from 'rxjs/internal/observable/from';
 import { SmartContextConfig } from './smart-context-config';
 
